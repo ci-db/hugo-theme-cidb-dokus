@@ -1,0 +1,51 @@
+{{- $root :=  partial "doc/helper/get-doc-root" . -}}
+
+<script type="text/javascript">
+    function openWin(extUrl)
+    {
+    
+    var myWindow = null;
+    
+    var xhr = new XMLHttpRequest();
+    
+    xhr.open("GET", extUrl, true);
+    
+    xhr.onreadystatechange = function () {
+    
+    if (this.readyState === 4 && this.status === 200) { 
+    
+    myWindow = window.open('', '');
+    
+    myWindow.document.write(this.responseText);
+    
+    myWindow.focus();
+    
+    myWindow.print();
+    
+    myWindow.close();
+    
+    }
+    
+    }
+    
+    xhr.send();
+    
+    }
+    </script>
+<div id="aside" class="ci-component">
+    <div class="hide-on-search">
+        <nav class="nav flex-column">    
+            {{ if ne .File $root.File }}
+            {{- /* }} <!-- <a class="nav-link" href="{{ if .IsSection }}{{ .Permalink }}{{ else }}{{ .Parent.Permalink }}{{ end }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a> -->
+             <a class="nav-link" href="{{ .Permalink }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a>
+             {{ */ -}}
+            {{ end }}
+            <a class="nav-link" href="{{ $root.Permalink }}_print"  target="_blank"><i class="bi bi-printer"></i> {{ i18n "print_document" . }}</a>
+
+        </nav>
+        <hr>
+        {{ .TableOfContents | replaceRE `href="#(.*)"` (printf `href="%s#%s"` .Page.RelPermalink "$1") | safeHTML }}
+
+ 
+    </div>
+</div>

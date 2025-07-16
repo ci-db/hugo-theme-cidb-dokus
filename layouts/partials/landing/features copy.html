@@ -1,0 +1,46 @@
+
+
+<div class="hg-tmpl-partial">
+    <div class="container{{ if .landing.fluid }}-fluid{{ end }}">
+
+                {{ $elements := default 3 .landing.cols }}
+                {{ $features := sort .landing.data "weight" }}
+        
+                {{ $total_rows := div (len $features) $elements }}
+        
+                {{ if gt (mod (len $features) $elements) 0 }}
+                  {{ $total_rows = add $total_rows 1 }}
+                {{ end }}
+
+                {{ range $i, $sequence := seq $total_rows }}
+                <div class="gx-5 row row-{{ $i }} row-{{ if eq (mod $i 2) 0 }}odd{{ else }}even{{ end }}">
+                  {{ range $j, $sequence2 := (seq $elements) }}
+      
+                      {{ $feature_index := add (mul $i $elements) $j }}
+                      {{ if lt $feature_index (len $features) }}
+                          {{ $element := index $features $feature_index }}
+      
+                          <div class="hg-feature-col col col-md-{{ div 12 $elements }} col-{{ $j }} col-{{ if eq (mod $j 2) 0 }}odd{{ else }}even{{ end }}">
+                              <div class="box-simple shadow p-3 mb-5 bg-body rounded">
+                                  {{ with $element.url }}
+                                  <a href="{{ $element.url }}">
+                                  {{ end }}
+                                      <div class="icon">
+                                          <i class="{{ $element.icon }}"></i>
+                                      </div>
+                                  {{ with $element.url }}
+                                  </a>
+                                  {{ end }}
+                                  <h3>{{ $element.name | safeHTML }}</h3>
+                                  <p>{{ $element.description | safeHTML }}</p>
+                              </div>
+                          </div>
+                      {{ end }}
+                  {{ end }}
+                </div>
+              {{ end }}
+
+
+    </div>
+</div>
+

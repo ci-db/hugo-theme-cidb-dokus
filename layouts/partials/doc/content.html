@@ -1,0 +1,175 @@
+
+
+{{- $root :=  partial "doc/helper/get-doc-root" . -}}
+{{- $page :=  . -}}
+{{- $rootBreandcrumb := $root -}}
+{{ with $rootBreandcrumb.Parent }}
+    {{ if eq .Type "docs" }}
+        {{- $rootBreandcrumb = . -}}
+    {{ end }}
+{{ end }}
+
+
+{{- partial "breadcrumb" (dict  "root" $rootBreandcrumb "current" . ) -}}
+
+<div class="ci-component">
+    <div id="doc-search-results" class="ci-component-section show-on-search no-print">
+        <h3>{{ i18n "search_result" . }}</h3>
+        <div class="results"></div>
+    </div>
+
+
+
+    {{- /* Aktionbar  */ -}}
+    {{- $count := 0 -}}
+    {{- range $index, $element :=  where $root.Pages "Type" "doc/pdf" -}}
+    {{-   $count = add $index 1 -}}
+    {{- end -}}
+    {{- if ne $count 0 -}}
+
+
+    <div class="main-actions no-print hide-on-search ci-component-section">
+        <ul class="nav justify-content-end">
+
+            
+    {{-   range where $root.Pages "Type" "doc/pdf" -}}
+            <li class="nav-item"><a href="{{.Permalink}}" target="_blank">{{ if ne .Title "" }}{{ .Title }}{{ else }}Print{{ end }}</a></li>
+    {{-   end -}}
+        </ul>
+    </div>
+    {{- end -}}
+    <div id="ci-page-content" class="ci-content hide-on-search ci-component-section" data-pagefind-body >
+
+    {{ if isset .Params.print "cover" }}            
+    <div id="cover">
+        <div id="cover-image">
+        {{ if isset .Params.print.cover "image" }}
+        {{ partial "print/cover_image" . }}
+        {{ end }}
+        </div>
+        <h1>{{ .Params.print.cover.title }}</h1>            
+        <h2>{{ .Params.print.cover.subtitle  }}</h2>
+    </div>
+
+    {{ end }}
+
+    
+    {{ $page := . }}
+    {{- if isset .Params "content_from" -}}            
+    {{- $page := .Site.GetPage .Params.content_from -}}
+    {{- end -}}
+    {{ if isset .Params.print "cover" }}
+    {{ else }}
+    <h1>{{ $page.Title }}</h1>
+    {{ end }}
+    {{- if ne $page ".Description" "" -}}
+    <p class="content-description">{{ $page.Description }}</p>
+    {{ end }}
+    {{/*
+    {{- $content := $page.Content -}}  
+    {{ $content = replaceRE `(?s)<h4(.*?)>(.*?)</h4>` "<h5$1>$2</h5>" $content }}
+    {{ $content = replaceRE `(?s)<h3(.*?)>(.*?)</h3>` "<h4$1>$2</h4>" $content }}
+    {{ $content = replaceRE `(?s)<h2(.*?)>(.*?)</h2>` "<h3$1>$2</h3>" $content }}
+    {{ $content = replaceRE `(?s)<h1(.*?)>(.*?)</h1>` "<h2$1>$2</h2>" $content }}
+    {{ $content | safeHTML   }}
+    */}}
+    {{-  $page.Content -}} 
+    </div>
+
+    <!--
+  
+    {{  (index .Pages 0) }}
+    -->
+  
+   {{/*
+    <div class="ci-component-section hide-on-search d-flex justify-content-center mb-3">
+        <div class="p-2">
+            <p>  PrevInSection {{ .PrevInSection }}</p>
+            <p>  Prev {{ .Prev }}</p>
+            <p>  PArenmtPrev {{ .Parent.Prev }}</p>
+            <p>  PArenmtPrev {{ .Parent.PrevInSection }}</p>
+         
+            {{ if .NextInSection  }}
+            <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< test {{ .NextInSection.Title | truncate 50 "..." }}</a>
+            {{ end }}                
+            {{with .Site.Pages.Next . }}
+            <a class="link-reverse" href="{{ .Permalink }}">< {{ .Title | truncate 50 "..." }}</a>
+            {{end}}    
+        </div>
+        <div class="p-2"></div>
+        <div class="p-2">
+            {{ if .PrevInSection }}
+            <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title | truncate 50 "..." }} ></a>
+            {{ end }}       
+            {{with .Site.Pages.Prev . }}
+            <a class="link-reverse" href="{{ .Permalink }}">{{ .Title | truncate 50 "..." }} ></a>
+            {{end}}    
+        </div>
+    </div>
+       */}}
+</div>
+
+
+
+{{- define "scripts" -}}
+
+{{ $opts := dict "targetPath" "doc.js" "minify" true }}
+{{ $js_doc := resources.Get "js/app/doc.js" | js.Build $opts }}
+
+<style>
+    /*
+    body, html {
+        overflow: hidden;
+        margin: 0;        
+    }
+  
+    #content {
+        height:100vh;
+        overflow-y: auto; 
+        padding-bottom: 180px;
+    }
+    */
+      
+</style>
+<script src="{{ $js_doc.RelPermalink }}?v={{ now.Unix }}"></script>
+<script>
+
+
+    /*
+              $( document ).ready(function() {
+                  $(window).on('popstate', function() {
+                          loadContent(location.pathname);
+                  });
+  
+                  function loadContent(url) {
+                          $('#main').load(url + ' #main');
+                  }
+  
+                  $( ".ajax-call" ).click(function(event) {
+                          var This = this;
+                          var url = $(this).attr('href');
+                          event.preventDefault();
+                          $( "#content" ).load( url + ' #content', function(data, ret) {
+                             if (ret == 'success') {                 
+                                  $(".side-menu .ajax-call").removeClass( "active" );
+                                  $(This).addClass( "active" );
+  
+                                  history.pushState({}, "", url);
+  
+                             }
+                          });
+  
+  
+                    
+                        //  console.log($(this).attr('href'));
+                        //  $("#content").load($(this).attr('href') + ' #content');
+                          
+                         // console.log("etst");
+                    });
+              });
+  */
+          </script>
+
+
+
+{{- end -}}

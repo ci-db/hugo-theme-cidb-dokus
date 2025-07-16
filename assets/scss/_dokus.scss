@@ -1,0 +1,235 @@
+//@import "../../vendor/bootstrap/scss/functions";
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+
+
+
+
+.show-on-search {
+    display: none;
+}
+
+$cidb-navbar-height:56px;
+
+#topbar {    
+    background-color: #000;
+}
+
+.no-print {
+    @media print {
+        display: none;
+
+    }
+
+}
+
+#navbar {    
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    z-index: 10000;
+}
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+#main {
+    .ci-component {
+        margin-top: 1rem;
+
+        .ci-component-section{
+            margin-top: 1rem;
+        }
+    }
+}
+
+
+.ci-content {
+    .ci-text-image {
+        text-align: center;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        &.image-border {
+            border: 1px solid #cccccc;
+        }
+    }
+}
+
+.type-doc {
+
+
+
+    #col-content {
+        border-left: $border-width $border-style $border-color;
+        border-right: $border-width $border-style $border-color;
+    }
+
+
+    #breadcrumb {
+    
+      
+        ol, li {
+            padding-bottom: 0;
+        }
+        .breadcrumb {
+            --bs-breadcrumb-margin-bottom: 0;
+        }
+    }
+    .sticky-nav{        
+        position: sticky;
+        top:  56px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: calc(100vh - 56px);
+    }
+
+    #aside {
+        #TableOfContents {
+            ul, li {
+                list-style: none;
+                padding-left: 4px;
+            }
+            ul ul {
+                padding-left: 10px;
+            }
+            a {
+                text-decoration: none;
+                color: $secondary; 
+                &:hover{
+                    color: $primary; 
+                }
+            }
+            li {
+                margin: 6px 0;
+            }            
+        }
+    }
+
+
+    #sidebar{
+
+        .nav {
+            --bs-nav-link-padding-x: 0;
+
+        }
+
+
+        nav a {
+            font-size: 1.1rem;
+        }
+
+
+        nav nav {
+            padding-left: 15px;
+
+            a {
+                font-size: 1rem;
+            }
+        }
+        a{
+            color: $secondary; 
+            &.active {
+                font-weight: bold;
+            }
+       
+                &:hover{
+                    color: $primary; 
+                }
+       
+        }
+    }
+
+    #content {
+        padding-right:10px;
+    }
+  
+}
+
+#TableOfContents {
+    a {
+        font-size: 0.8rem;
+    }
+}
+
+#ci-page-content{
+
+    pre {
+        code {
+            display: block;
+            background-color: #f1f2f2;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+    }
+
+    .highlight {
+        margin-bottom: 1rem;
+
+        pre {
+            margin-bottom: 0;
+            code {
+                display: unset;
+                background-color: unset;
+                padding: unset;
+                border: unset;
+            }
+        }
+
+
+
+        > pre {
+            padding: 10px;
+        }
+
+        > div {
+            padding: 10px 0;
+        }
+    }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 1em 10px 0.1em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+    
+    h1:first-of-type  {
+       text-decoration: underline;
+
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    .ci-image-wrapper {
+        text-align: center;
+        figure {
+            display: inline-grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            font-family: sans-serif;
+            font-size: 0.7em;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            figcaption {
+                width: 0;
+                min-width: 100%;
+                background: #f0f0f0;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+    
+        }    
+    }
+}

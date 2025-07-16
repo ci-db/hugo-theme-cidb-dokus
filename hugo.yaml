@@ -1,0 +1,60 @@
+
+
+ 
+outputFormats:
+  PRINT:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _print    
+    permalinkable: false
+  fuse_search:
+    baseName: _searchindex 
+    isHTML: false
+    mediaType: application/json
+    permalinkable: false      
+
+
+module:
+  hugoVersion:
+    extended: true
+    min: 0.146.0
+  mounts:
+    - source: assets
+      target: assets
+    - source: node_modules/bootstrap
+      target: assets/vendor/bootstrap
+    - source: node_modules/jquery
+      target: assets/vendor/jquery
+    - source: node_modules/pagedjs
+      target: assets/vendor/pagedjs
+    - source: node_modules/fuse.js
+      target: assets/vendor/fuse.js
+    - source: i18n
+      target: i18n
+    - source: layouts
+      target: layouts
+    - source: static
+      target: static   
+    - source: node_modules/bootstrap-icons
+      target: assets/vendor/bootstrap-icons 
+    - source: node_modules/bootstrap-icons/font/fonts
+      target: static/fonts
+   # - source: node_modules/bootstrap-icons/
+    #  target: static/css//bootstrap-icons/
+#    - source: ../../node_modules/bootstrap
+#      target: assets/vendor/bootstrap        
+#    - source: assets/_vendor/bootstrap/scss
+#      target: assets/vendor/bootstrap/scss/vendor        
+#    - source: ../../node_modules/bootstrap-icons
+#      target: assets/vendor/bootstrap-icons        
+
+
+  #imports:
+  #  - path: github.com/twbs/bootstrap
+  #    disable: false
+  #    mounts:
+  #      - source: scss
+  #        target: assets/vendor/bootstrap/scss
+  #      - source: dist/js
+  #        target: assets/vendor/bootstrap/dist/js      

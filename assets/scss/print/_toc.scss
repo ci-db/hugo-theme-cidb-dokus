@@ -1,0 +1,98 @@
+
+
+
+#pages {
+    h1 {
+        counter-increment: counterH1; 
+        counter-reset: counterH2;   
+       &::before {
+            content: counter(counterH1);
+            left: 0;
+            position: absolute;
+        }
+    }
+    h2 {
+        counter-increment: counterH2; 
+        counter-reset: counterH3; 
+        &::before{ 
+            content: counter(counterH1) ". " counter(counterH2);
+            // padding-right: 5mm;
+            left: 0;
+            position: absolute;
+
+        }
+    }
+}
+
+
+
+#toc {
+    /* page-break-after: always;*/
+    overflow: hidden;
+}
+
+#toc ul::-webkit-scrollbar {
+    display: none;
+}
+
+
+#list-toc-generated { 
+    list-style: none;
+}
+
+#list-toc-generated .toc-element { 
+    break-inside: avoid; 
+}
+
+#list-toc-generated .toc-element a::after {
+    content: " " target-counter(attr(href), page);
+    float: right;
+}
+
+#list-toc-generated{ 
+    counter-reset: counterTocLevel1; 
+}
+
+#list-toc-generated .toc-element-level-1{ 
+    counter-increment: counterTocLevel1; 
+    counter-reset: counterTocLevel2; 
+}
+
+#list-toc-generated .toc-element-level-1::before{ 
+    content: counter(counterTocLevel1);
+    padding-right: 10px;
+
+}
+
+#list-toc-generated .toc-element-level-2{ 
+    counter-increment: counterTocLevel2; 
+    padding-left: 36px;
+}
+
+#list-toc-generated .toc-element-level-2::before{ 
+    content: counter(counterTocLevel1) ". " counter(counterTocLevel2);
+    position: absolute;
+    left: 18px;
+
+}
+
+
+#list-toc-generated{ /* hack for leaders */
+    overflow-x: hidden;
+}
+
+#list-toc-generated .toc-element::after{ /* fake leading */
+    content: 
+        ".............................................."
+        ".............................................."
+        ".............................................."  
+        "........";
+    float: left;
+    width: 0;
+    padding-left: 5px;
+    letter-spacing: 2px;
+}
+
+#list-toc-generated .toc-element{
+    display: flex; 
+}

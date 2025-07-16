@@ -1,0 +1,41 @@
+
+{{ $stufe := .stufe }}
+{{ $root := .root }}
+{{ $site := .site }}
+{{ $item := .item }}
+
+<div id="pages">
+
+
+
+{{ with .item }}
+{{ range  $index, $element := where  $item.Pages.ByWeight "Type" "doc" }}    
+
+
+
+<h1 class="main-title">{{ .Title }}</h1>
+
+{{ with $root.Params.print.cover.title  }}
+{{ else }}
+<div class="layout-page-header">                
+    {{ .Title }}
+</div>
+{{ end }}
+
+<div class="content">
+    {{ if isset .Params "content_from"}}                    
+    {{ $page := $site.GetPage .Params.content_from }}
+    {{ $page.Content }}  
+    {{ else }}
+    {{ .Content }}  
+    {{ end }}
+
+</div>
+{{ if .IsNode  }}      
+{{ partial "print/pages" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
+{{ end }}
+{{ end }}
+
+{{ end }}
+
+</div>

@@ -1,0 +1,38 @@
+<div class="hg-tmpl-partial{{ if .landing.image_left }} image-left{{else}} image-right{{ end }}">
+    <div class="container{{ if .landing.fluid }}-fluid{{ end }}">
+        <div class="row{{ if isset .landing "classRow" }} {{ .landing.classRow }}{{ end }}">
+            {{ if .landing.image_left }}
+            <div class="col-12 col-md-6 hg-picture">
+                <img src="{{ .landing.image | relURL }}" alt="Mobile" class="img-fluid">
+            </div>
+            <div class="col-12 col-md-6 hg-col hg-text">
+                <div class="hg-text-inner">
+                {{ if .landing.html }}
+                {{ .landing.text | safeHTML }}
+                {{ else if .landing.noMarkdown }}
+                {{ .landing.text }}
+                {{ else }}
+                {{ .landing.text | markdownify }}
+                {{ end }}
+                </div>
+            </div>
+            {{ else }}
+            <div class="col col-md-6 hg-col hg-text">
+                <div class="hg-text-inner">
+                {{ if .landing.html }}
+                {{ .landing.text | safeHTML }}
+                {{ else if .landing.noMarkdown }}
+                {{ .landing.text }}
+                {{ else }}
+                {{ .landing.text | markdownify }}
+                {{ end }}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 hg-picture">
+                <img src="{{ .landing.image | relURL }}" alt="Mobile" class="img-fluid">
+            </div>
+            {{ end }}
+
+        </div>
+    </div>
+</div>

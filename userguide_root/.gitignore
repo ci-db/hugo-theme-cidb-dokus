@@ -1,0 +1,6 @@
+/public
+/public_pagefind
+/node_modules
+/resources
+/static/_pagefind
+.hugo_build.lock

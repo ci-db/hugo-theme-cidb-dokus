@@ -1,0 +1,19 @@
+{{- if eq .Site.Params.searchengine "fuse" -}}
+{{- $root := . -}}
+{{- if eq $root.File .File -}}
+{{- $data := newScratch -}}
+{{- $data2 := newScratch -}}
+{{- $data.Add "pages" slice -}}
+{{- $data2.Add "index" slice -}}
+{{- if ne .Layout "search" -}}
+{{- $data2.Add "index" (dict "type" .Type "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+{{- end -}}
+{{- partial "searchindex/pages" (dict "data" $data "root" $root "item" .  "stufe" 0 ) -}}
+{{- range ($data.Get "pages") -}}
+{{- if ne .Layout "search" -}}
+{{- $data2.Add "index" (dict "type" .Type "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+{{- end -}}
+{{- end -}}
+{{- $data2.Get "index" | jsonify -}}
+{{- end -}}
+{{- end -}}

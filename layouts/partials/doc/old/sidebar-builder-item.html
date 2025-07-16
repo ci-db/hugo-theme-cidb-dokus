@@ -1,0 +1,67 @@
+{{ $currentPage := .currentPage }}   
+{{ $stufe := .stufe }}
+{{ $root := .root }}
+{{ $site := .site }}
+
+{{ range  $index, $element := .item.Pages.ByWeight  }}    
+    {{ if .IsNode  }}    
+
+    {{ if eq $stufe 1}}
+        {{ $collapsible := false }}
+        {{ if .Site.Params.doc.collapsible }}
+            {{ $collapsible = true }}
+        {{ end }}
+
+
+
+        {{ if $collapsible }}
+        <!--
+        <div class="level-{{ $stufe }} accordion-item">
+            <h2 class="accordion-header" id="nav-header-{{ $index }}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $index }}" aria-expanded="false" aria-controls="collapse-{{ $index }}">
+                <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
+            </button>
+            </h2>
+            <div id="collapse-{{ $index }}" class="accordion-collapse collapse" aria-labelledby="nav-header-{{ $index }}" data-bs-parent="#sidebar-accordion">
+                <div class="accordion-body"> {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}</div>
+            </div>
+        </div>
+        -->
+        {{ else }}
+        <!--
+        <div class="level-{{ $stufe }}">
+            <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
+            {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+        </div>
+        -->
+        {{ end}}
+    {{ else }}
+
+
+        <!--
+        <div class="level-{{ $stufe }}">
+            <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
+            {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+        </div>
+        -->
+    {{ end }} 
+
+    {{ else }}
+        <!--
+        <div class="level-{{ $stufe }}"><a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a></div>
+        -->
+    {{ end }}
+
+
+    <a class="nav-link ajax-call{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
+    {{ if .IsNode  }}  
+    <nav>
+        {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+    </nav>    
+    {{ end }}
+
+{{ end }}
+
+
+
+

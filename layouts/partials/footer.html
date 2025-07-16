@@ -1,0 +1,41 @@
+{{ if isset .Site.Params "footer" }}
+{{ if .Site.Params.footer.enable }}
+<footer id="footer">
+    <div class="container">
+
+        <div class="row">
+
+        {{ if isset .Site.Params.footer "about_us" }}
+        <div class="col col-12 col-sm-6 col-md-9">
+            <h4>Über uns</h4>
+
+            {{ .Site.Params.footer.about_us | safeHTML }}
+
+            <hr class="d-block d-sm-none">
+
+        </div>
+        <!-- /.col-md-4 -->
+        {{ end }}
+
+        <!-- /.col-md-4 -->
+
+        {{ if isset .Site.Params.footer "address" }}
+        <div class="col col-12 col-sm-6 col-md-3">
+
+          <h4>Kontakt</h4>
+
+            {{ .Site.Params.footer.address | safeHTML }}
+
+	    <a href="{{ default "/contact" .Site.Params.contact_url }}" class="btn btn-small btn-template-main">{{ i18n "contactGoTo" }}</a>
+
+        </div>
+        <!-- /.col-md-4 -->
+        {{ end }}
+    </div>
+    </div>
+
+    <!-- /.container -->
+</footer>
+{{ end }}
+{{ end }} 
+

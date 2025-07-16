@@ -1,0 +1,8 @@
+name = "hugo-theme-cidb-dokus"
+description = "A Hugo theme for technical documentation sites"
+tags = ["documentation", "multilingual", "customizable", "responsive", "docs"]
+features = []
+min_version = "0.146.0"
+
+[author]
+  name = "mritter"

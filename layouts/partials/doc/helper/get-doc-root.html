@@ -1,0 +1,30 @@
+
+
+
+{{ $data := newScratch }}
+
+
+{{ template "get-root"  (dict "data" $data "node" .)  }}
+
+{{ return ($data.Get "doc-root") }}
+
+{{ define "get-root" }}
+
+    {{ $node := .node }}
+    {{ $data := .data}}
+
+    {{ with .node.Parent }}
+
+        {{ if  ne .Type "doc" }}
+
+            {{ $data.Set "doc-root" $node }}
+        {{ else  }}
+
+            {{ template  "get-root" (dict  "data" $data "node" .) }}
+        {{ end }}
+
+    {{ else }}
+        {{  $data.Set "doc-root"  .node }}    
+    {{ end }}
+
+{{ end }}

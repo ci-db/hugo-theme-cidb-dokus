@@ -1,0 +1,84 @@
+baseURL: /
+title: cidb Dokus
+theme: [hugo-theme-cidb-dokus]
+
+
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true
+
+
+## Language
+defaultContentLanguage: de
+defaultContentLanguageInSubdir: false
+contentDir: "content/de"
+
+languages:
+  de:
+    title: Doku Theme
+    description: Dokumente
+    languageName: Germany
+    weight: 1
+  en:
+    contentDir: "content/en"
+    title: Docu Theme
+    description: Docus
+    languageName: English
+    weight: 1
+
+
+#module:
+#  mounts:
+#    - source: content/de
+#      target: content    
+
+# Menue
+
+menu:
+  main:
+    - name: Test Seite
+      weight: 1000
+      url: https://example.com
+      post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
+
+
+outputs:
+  section: [HTML, RSS, PRINT, FUSE_SEARCH]  # FUSE_SEARCH_DOC,PRINT
+  page: [HTML]   
+  home:
+    - HTML
+    - RSS
+    - FUSE_SEARCH
+
+
+  #  - DOCPATHS
+
+params:
+  searchengine: fuse #fuse, pagefind
+  doc:
+    collapsible: true
+  page:
+  top:
+    enable: true
+    fluid: false
+  nav:
+    enable: true
+    fluid: false
+
+
+module:
+  mounts:
+    - source: content/de
+      target: content
+    # Mount the repo's top-level .md files under project
+    #- source: ../README.md
+    #  target: content/project/readme.md
+    # source: ../CHANGELOG.md
+    #  target: content/project/changelog.md
+    # source: ../CONTRIBUTING.md
+    # target: content/project/contributing.md

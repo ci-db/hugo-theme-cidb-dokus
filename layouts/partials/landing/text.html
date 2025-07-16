@@ -1,0 +1,15 @@
+<div class="hg-tmpl-partial">
+    <div class="container{{ if .landing.fluid }}-fluid{{ end }}">
+        <div class="row{{ if isset .landing "classRow" }} {{ .landing.classRow }}{{ end }}">
+            <div class="col hg-col hg-text">
+                {{ if .landing.html }}
+                {{ .landing.text | safeHTML }}
+                {{ else if .landing.noMarkdown }}
+                {{ .landing.text }}
+                {{ else }}
+                {{ .landing.text | markdownify }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>

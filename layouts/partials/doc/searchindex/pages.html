@@ -1,0 +1,15 @@
+
+
+{{- $stufe := .stufe -}}
+{{- $data := .data -}}
+{{- $root := .root -}}
+{{- $site := .site -}}
+{{- $item := .item -}}
+{{- with .item -}}
+{{- range  $index, $element := where  $item.Pages.ByWeight "Type" "doc" -}}    
+{{- $data.Add "pages" . -}}
+{{- if .IsNode  -}}      
+{{- partial "doc/searchindex/pages" (dict "data" $data "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}

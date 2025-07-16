@@ -1,0 +1,24 @@
+
+
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+{{- if and (not $img) .Page.File -}}
+{{ $path := path.Join .Page.File.Dir .Destination }}
+{{- $img = resources.Get $path -}}
+{{- end -}}
+
+<div class="ci-image-wrapper">
+{{- with $img -}}
+{{ $large := $img.Resize "1680x" }}
+{{ if lt $img.Width $large.Width }}
+{{ $large = $img.Resize ( printf "%vx" $img.Width )}}
+{{ end }}
+    <figure class="ci-text-image image-caption">
+        <img alt="{{ $.Text }}" src="{{ $large.RelPermalink }}" />
+        {{- with $.Title  -}}
+        <figcaption>{{ . | safeHTML }}</figcaption>
+        {{ end }}
+    </figure>
+{{- else -}}
+    <img src="{{ .Destination | safeURL }}" alt="{{ $.Text }}" />
+{{- end -}}
+</div>

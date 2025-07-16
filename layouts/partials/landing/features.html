@@ -1,0 +1,31 @@
+<div class="hg-tmpl-partial">
+    <div class="container{{ if .landing.fluid }}-fluid{{ end }}">
+
+        <div class="row">
+            {{ range sort  .landing.data "weight" }}
+
+            <div class="hg-feature-col  col col-sm-6 col col-lg-4">
+                <div class="box-simple shadow p-3 mb-5 bg-body rounded">
+                    {{ with .url }}
+                    <a href="{{ .url }}">
+                    {{ end }}
+                        <div class="icon">
+                            <i class="{{ .icon }}"></i>
+                        </div>
+                    {{ with .url }}
+                    </a>
+                    {{ end }}
+                    <h3>{{ .name | safeHTML }}</h3>
+                    <p>{{ .description | safeHTML }}</p>
+                </div>
+            </div>
+
+
+    
+            {{ end }}
+        </div>
+               
+
+
+    </div>
+</div>

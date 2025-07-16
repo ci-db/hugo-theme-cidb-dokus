@@ -1,0 +1,13 @@
+
+{{ $stufe := .stufe }}
+{{ $root := .root }}
+{{ $site := .site }}
+
+{{ range  $index, $element := .item.Pages.ByWeight  }}    
+
+    <div  class="level-{{ $stufe }}"><a class="level-{{ $stufe }}" href="#{{.File}}">{{ .Title }}</a></div>
+    {{ if .IsNode  }}      
+    {{ partial "toc/toc" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
+    {{ end }}
+{{ end }}
+

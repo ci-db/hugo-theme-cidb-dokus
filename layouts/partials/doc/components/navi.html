@@ -1,0 +1,94 @@
+{{- $root :=  partial "doc/helper/get-doc-root" . -}}
+<div class="ci-menu hide-on-search ci-component-section mt-2">
+    <nav class="nav flex-column">
+        {{- template "builder" (dict "site" .Site  "currentPage" . "root"  $root   "stufe" 1  "item" $root  )  -}}
+    </nav>          
+</div>
+
+<script>
+
+    $( document ).ready(function() {
+        /*
+        $(window).on('popstate', function(event) {
+            event.preventDefault();
+    
+            console.log("load",location.pathname)
+           loadContent(location.pathname);
+        });
+    
+        function loadContent(url) {
+            $('#main').load(url + ' #main');
+         }
+    
+    
+         $( "#TableOfContents a" ).click(function(event) {
+            event.preventDefault();
+            $('body').scrollTo($(this).attr('href'))
+           // history.pushState("", "", $(this).attr('href'));
+         });
+         */
+      
+   
+       
+/*, #breadcrumb a" */
+        $( "#sidebar .ajax-call").click(function(event) {
+            event.preventDefault();
+            console.log("test")
+            var This = this;
+            var url = $(this).attr('href');
+      
+
+            var $div = $('<div>');
+            $div.load(url, function(data,ret) {
+                if (ret == 'success') { 
+                    history.replaceState(null, null, url)
+
+                    console.log( $("#ci-page-content h1", this).html());
+
+                    $("#ci-page-content").html($("#ci-page-content", this).html())
+                    $("#sidebar").html($("#sidebar", this).html())
+                    $("#breadcrumb").html($("#breadcrumb", this).html())
+                    $("#col-aside").html($("#col-aside", this).html())
+                    var pageInfo = {"id":this.id,"url":This.href};
+
+
+                  // history.pushState(This, null, url);
+                                     
+
+                }else {
+                    alert("error page loading");
+                }
+            });
+        });
+    });
+
+</script>
+{{ define "builder" }}
+
+{{- $currentPage := .currentPage -}}   
+{{- $stufe := .stufe -}}
+{{- $root := .root -}}
+{{- $site := .site -}}
+
+{{ range $index, $element := where   .item.Pages.ByWeight "Type" "doc"  }}    
+    {{- $title := .Title -}}
+    {{ $vorfahr := .IsAncestor  $currentPage }} 
+
+    {{- if eq  $title "" }} 
+        {{ $title = "{{ NO TITLE }}" }}
+    {{ end -}}
+    {{ $id :=  (printf "idx%#v-stufe-%#v" $index $stufe) }}
+
+   
+
+    <a class="nav-link ajax-call{{ if or (eq .File  $currentPage.File)  ($vorfahr) }} active{{ end }}" 
+    data-bs-toggle="collapse" 
+     role="button"  aria-expanded="false"   data-bs-target="#{{ $id }}"   aria-controls="{{ $id }}"    href="{{ .Permalink }}">{{  partial "helper/page-title" . }}</a>
+    {{- if .IsNode  }}  
+    <nav id="{{ $id }}" class="collapse{{ if  or (eq .File  $currentPage.File) (eq  $vorfahr  true) }} active show{{ end }}">
+        {{ template "builder" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" ( add $stufe 1 ) "item" . )  }}
+    </nav>    
+    {{ end -}}
+{{ end }}
+
+{{ end }}

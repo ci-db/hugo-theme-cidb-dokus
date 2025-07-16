@@ -1,0 +1,39 @@
+ 
+{{ $currentPage :=  .currentPage }}
+{{ $site :=  .site }}
+{{ $collapsible := false }}
+{{ $collapsible_text := "accordion accordion-flush" }}
+{{ if $site.Params.doc.collapsible }}
+    {{ $collapsible = true }}
+{{ end }}
+
+
+
+{{ if  eq $currentPage.Type "doc" }}
+{{ partial "doc/sidebar-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
+
+<!--
+<div class="sidebar-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidebar-accordion">
+    {{ partial "old/doc/sidebar-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
+</div>
+-->
+
+{{ else }}
+
+{{ with .node.Parent }}
+
+{{ if  eq .Type "doc" }}
+{{ partial "old/doc/sidebar-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
+
+<!--
+<div class="sidebar-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidebar-accordion"> 
+    {{ partial "old/doc/sidebar-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
+</div>
+-->
+{{ else }}
+{{ partial "old/doc/sidebar-builder" (dict "site" $site "currentPage"  $currentPage  "node" . ) }}
+
+{{ end }}
+{{ end }}
+
+{{ end }}

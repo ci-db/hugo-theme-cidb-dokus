@@ -1,0 +1,6 @@
+
+{{ $page := . }}
+{{- if isset .Params "content_from" -}}            
+{{- $page := .Site.GetPage .Params.content_from -}}
+{{- end -}}
+{{ return  $page}}

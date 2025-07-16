@@ -1,0 +1,10 @@
+- id: print_document
+  translation: "Print"
+- id: search_document
+  translation: "Search"  
+- id: search_result
+  translation: "Search Results"  
+- id: no_matches_found
+  translation: "No matches found"  
+- id: button_back
+  translation: "Back" 

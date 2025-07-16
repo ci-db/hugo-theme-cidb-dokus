@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{ partial "print/head" . }}
+        {{ $options_css1 := (dict "targetPath" "assets/css/print.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+        {{ $style1 := resources.Get "scss/print/layout/default.scss" | css.Sass $options_css1 }}
+        <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">        
+        
+    </head>
+    <style>
+        #cover h1 {
+            font-size: 30pt;
+            font-weight: bold;
+        }
+        #cover h2 {
+            margin-top: 5mm;
+            font-size: 20pt;
+            font-weight: bold;
+        }
+        #cover-image {
+            height: 400px;
+        }
+        #cover-content {
+            margin-top: 5mm;            
+        }
+        #cover-content p{
+            padding-bottom: 5mm;  
+            line-height: 16pt;          
+        }
+
+        .ci-cover-image-wrapper img {
+            max-width: 100%;
+        }
+
+        .footer-container {
+            line-height: 20pt;
+            font-size: 10pt;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+        }
+         .footer-container .left {
+            margin-right: auto;
+        }        
+        
+    </style>
+    <body>
+        <!-- Cover -->
+        {{ if isset .Params.print "cover" }}            
+        <div id="cover">
+            <div id="cover-image">
+            {{ if isset .Params.print.cover "image" }}
+            {{ partial "print/cover_image" . }}
+            {{ end }}
+            </div>
+            <h1>{{ .Params.print.cover.title }}</h1>            
+            <h2>{{ .Params.print.cover.subtitle  }}</h2>
+            <div id="cover-content">
+            {{ .Content }}
+            </div>
+        </div>
+        <!-- Table of Content -->
+        <div id="table-of-content" >
+            <h1>Inhaltsverzeichnis</h1>
+            <div id="toc"></div>
+        </div>
+        {{ end }}
+
+        <div class="layout-page-header">                
+            {{ .Params.print.cover.title  }} -   {{ .Params.print.cover.subtitle  }}
+        </div>
+        <div class="layout-page-footer">   
+            <div class="footer-container">                
+                <div class="left">{{ .Params.print.copyright  }} </div>             
+                <div class="right">Seite <span class="page-number" ></span> von <span class="page-count" ></span></div>
+            </div>
+        </div>
+
+        <!-- Table of Pages -->
+        {{ partial "print/pages"  (dict  "site" .Site "root" .  "stufe" 1 "item" . )}}
+
+        {{ partial "print/foot" . }}
+
+
+
+    </body>
+
+</html>
+
+

@@ -1,0 +1,27 @@
+{{ if isset .Site.Params "copyright" }}
+{{ if .Site.Params.copyright.enable }}
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col col-12">
+                <div class="d-flex flex-column flex-sm-row text-center text-sm-start">
+                    <div  class="flex-grow-1">{{ .Site.Params.copyright.text | safeHTML }}</div>
+                        {{ range $index, $element := .Site.Params.copyright.links }}                                
+                            {{ if gt $index 0 }}&nbsp;&nbsp;|&nbsp;&nbsp;{{ end }}
+                          <a href="{{  $element.url | relURL }}">{{ $element.name }}</a> 
+                        {{ end }}
+                        
+                 {{ if .Site.Params.copyright.show_template_copyright }}
+                        <br>  Template by <a href="https://github.com/...">cidb</a>
+                    {{ end }}
+                    </div>
+                    <div></div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ end }} 
+

@@ -1,0 +1,44 @@
+pre {
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    page-break-inside: avoid;    
+    code {
+        display: block;
+        background-color: #f1f2f2;
+        padding: 10px;
+        border: 1px solid #cccccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+
+    }
+}
+
+
+
+.highlight {
+    margin-bottom: 1rem;
+
+    pre {
+        margin-bottom: 0;
+        break-inside: avoid;
+        page-break-inside: avoid;        
+        code {
+            display: unset;
+            background-color: unset;
+            padding: unset;
+            border: unset;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+    }
+
+
+
+    > pre {
+        padding: 10px;
+    }
+
+    > div {
+        padding: 10px 0;
+    }
+}

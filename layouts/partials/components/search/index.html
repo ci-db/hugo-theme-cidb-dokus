@@ -1,0 +1,37 @@
+{{- $placeholder := "Search All" -}}
+{{- if eq .Type "doc" -}}
+{{- $placeholder = "search" -}}
+{{ with .Params.searchDocsPlaceholder }}
+{{- $placeholder = . -}}
+{{ else }}
+{{- $placeholder =  i18n "search_document" .  -}}
+{{ end }}
+
+{{- end -}}
+
+<div class="ci-search ci-component-section">    
+    <div class="col-auto">
+
+        <label for="search" class="visually-hidden">Search</label>
+        <input type="input" class="form-control" id="doc-search" placeholder="{{ $placeholder }}">
+    </div> 
+    <div class="col-auto mt-2 show-on-search">
+        <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> {{ i18n "button_back" . }}</button>
+    </div>      
+</div> 
+
+
+<script id="doc-search-result-template" type="text/x-js-template">
+    <div id="summary-${key}">
+      <h4><a href="${link}">${title}</a></h4>
+      <p>${snippet}</p>
+      ${ isset tags }<p>Tags: ${tags}</p>${ end }
+      ${ isset categories }<p>Categories: ${categories}</p>${ end }
+    </div>
+</script>
+
+
+{{- partial "components/search/script" .  }} 
+
+
+

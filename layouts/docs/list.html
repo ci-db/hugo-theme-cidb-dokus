@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="col col-12">
+{{ if not (eq .Site.Home .)}}
+{{- partial "breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
+{{ end }}
+<div class="ci-component component-docs">
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Description }}</p>
+    <div class="list">
+    {{ range .Pages.ByWeight }}
+    {{ if or (eq .Type "docs") (eq .Type "doc") }}
+    {{ $icon := "bi-files" }}
+    {{ if eq .Type "doc" }}
+    {{ $icon = "bi-filetype-doc" }}
+    {{ end }}
+
+    <div>
+        <div><i class="bi {{$icon}}"></i> 
+        {{ $page := . }}
+        {{ with .Params.Link }}
+            <a target="_blank" href="{{ . }}">{{ $page.Title }} <i class="bi bi-box-arrow-up-right"></i></a> </i>
+        {{ else }}    
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        {{ end }}
+        </div>
+        {{ with .Description }}
+         <p>{{ . }}</p>
+         {{ end }}
+    </div>
+    <hr>
+    {{ end }}
+    {{ end }}
+    </div>
+</div>
+
+</div>
+{{ end }}

@@ -1,0 +1,11 @@
+- id: print_document
+  translation: "Drucken"
+- id: search_document
+  translation: "Durchsuchen"  
+- id: search_result
+  translation: "Suchergebnisse"  
+- id: no_matches_found
+  translation: "Kein Treffer gefunden"  
+- id: button_back
+  translation: "Zurück"  
+  

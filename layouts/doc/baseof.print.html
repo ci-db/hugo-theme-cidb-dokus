@@ -1,0 +1,5 @@
+{{- $partialPath := "print_layouts/default/index.html" -}}
+{{- with .Params.print.layout -}}
+    {{- $partialPath := printf `print_layouts/%s/index.html` . -}}
+{{- end -}}
+{{- partial $partialPath . -}}

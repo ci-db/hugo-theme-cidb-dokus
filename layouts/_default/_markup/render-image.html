@@ -1,0 +1,76 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $alt := plainify .Text -}}
+{{- $title := plainify .Title -}}
+{{- $img := "" -}}
+{{- $u := urls.Parse .Destination -}}
+{{ $weite := "" }}
+{{ $q := $u.Query }}
+
+{{- if $u.IsAbs -}}
+    {{- with resources.GetRemote $u.String -}}
+        {{- with .Err -}}
+            {{- errorf "%s" -}}
+        {{- else -}}
+            {{- $img = . -}}
+        {{- end -}}
+    {{- else -}}
+        {{- errorf "Unable to get remote image" -}}
+    {{- end -}}
+{{ else }}
+    {{- with .Page.Resources.GetMatch $u.Path -}}
+        {{- $img = . -}}
+        {{ $weite = $q.Get "w" }}
+    {{- else -}}    
+        {{- errorf "Unable to get local image" -}}
+    {{- end -}}
+{{- end -}}
+
+{{- with $img -}}
+    {{- $large := $img.Resize "854x" -}}    
+    {{- if lt $img.Width $large.Width -}}
+    {{- $large = $img -}}
+    {{- end -}}
+    {{/*
+    {{- $medium := $large.Resize "613x" -}}
+    {{- if lt $large.Width $medium.Width -}}
+    {{- $medium = $large -}}
+    {{- end -}}
+
+    {{- $small := $medium.Resize "458x" -}}
+    {{- if lt $medium.Width $small.Width -}}
+    {{- $small = $medium -}}
+    {{- end -}}
+    */}}
+    <div class="d-xl-none ci-image-wrapper">
+        <figure class="ci-text-image image-caption"
+
+        >
+            <img
+            class='ci-image{{- with $q.Get "b"}} image-border{{- end -}}'
+            {{- with $title }} title="{{ . }}" {{- end -}}
+            {{- with $alt }} alt="{{ . }}" {{- end -}}
+            width="{{ $large.Width }}" 
+             height="{{ $large.Height }}" src="{{ $large.RelPermalink }}"/>
+            {{- with $.Title  -}}
+            <figcaption>{{ . | safeHTML }}</figcaption>
+            {{ end }}
+        </figure>
+    </div>    
+    <div class="d-none d-xl-block ci-image-wrapper">
+        <figure class="ci-text-image image-caption"
+        {{ if not (eq $weite "") }}
+        style="width: {{ $weite }}%"
+        {{ end }}
+        >
+            <img
+            class='ci-image{{- with $q.Get "b"}} image-border{{- end -}}'
+            {{- with $title }} title="{{ . }}" {{- end -}}
+            {{- with $alt }} alt="{{ . }}" {{- end -}}
+            width="{{ $large.Width }}" 
+             height="{{ $large.Height }}" src="{{ $large.RelPermalink }}"/>
+            {{- with $.Title  -}}
+            <figcaption>{{ . | safeHTML }}</figcaption>
+            {{ end }}
+        </figure>
+    </div>
+{{- end -}}

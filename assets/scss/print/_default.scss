@@ -1,0 +1,61 @@
+.pagedjs_page {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin: 40px auto;
+}
+
+
+b, strong {
+    font-weight: bold;
+}
+i, italic {
+    font-style: italic;
+}
+
+.page-number:after {
+    content: counter(page)
+}
+.page-count:after {
+    content: counter(pages)
+}
+
+.layout-page-header {
+    position: running(pageHeader);
+}
+.layout-page-footer {
+    position: running(pageFooter);
+    /*border: 1px solid #000000;*/
+}
+
+
+
+@page {
+    margin: 76px 15mm 76px 15mm;
+    size: A4;
+    @top-center {
+        content: element(pageHeader) 
+    }
+    /*
+    @top-center {
+        content: element(titleRunning)    
+        content: "<b>test</b> Seite " counter(page) " von " counter(pages);
+    }
+    */
+    @left-top {
+ 
+    }
+
+    @top-left {
+      
+    }
+
+    @bottom-center {
+        content: element(pageFooter)
+    }
+
+    /*
+    @bottom-center {
+        content: "Seite " counter(page) " von " counter(pages);
+    }
+    */
+}
