@@ -1,0 +1,4 @@
+# pagefind.yml
+source: public
+output_path: ./userguide_root/static/_pagefind
+site: userguide_root/public_pagefind

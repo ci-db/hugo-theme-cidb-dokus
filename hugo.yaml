@@ -8,7 +8,7 @@ outputFormats:
     mediaType: text/html
     path: _print    
     permalinkable: false
-  fuse_search:
+  FUSE_SEARCH:
     baseName: _searchindex 
     isHTML: false
     mediaType: application/json

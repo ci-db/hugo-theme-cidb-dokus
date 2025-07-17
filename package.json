@@ -6,13 +6,10 @@
   "scripts": {
     "_cd:docs": "cd userguide_root &&",
     "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${BASE_URL:-http://localhost}\" -p 9001 server  --disableFastRender",
+    "_build:paged_search_index": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
+    "_build:paged_search_index2": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind",
     "dev": "dotenv -- npm run _dev",
-    "build": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir",
-    "_cp:bs": "npx cpy 'node_modules/bootstrap/scss/vendor/*' assets/_vendor/bootstrap/scss/",
-    "index": "cd userguide_root && hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --source 'public_pagefind' --output-path ../static/_pagefind",
-    "get:hugo-modules": "node tools/getHugoModules/index.mjs",
-    "_mkdir:hugo-mod": "node tools/mkdirp-hugo-mod.js ..",
-    "postinstall": "npm run _mkdir:hugo-mod"
+    "build": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir"
   },
   "dependencies": {
     "bootstrap": "5.3.7",

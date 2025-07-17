@@ -19,7 +19,7 @@
         {{- /* partial "footer.html" . */}}           
         {{- /* partial "copyright.html" . */}} 
         {{- /*     <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script> --> */}} 
-        {{- if eq .Site.Params.searchengine "fuse" }}
+        {{-  if eq .Site.Params.searchengine "fuse" }}
             {{- $fuse := resources.Get "vendor/fuse.js/dist/fuse.min.js" | minify | resources.Copy "js/fuse.min.js" }}
             <script src="{{ $fuse.RelPermalink  | relURL }}"></script>        
             {{- $jquery_marks := resources.Get "vendor/jquery.marks/jquery.mark.min.js" | minify | resources.Copy "js/jquery.mark.min.js" }}

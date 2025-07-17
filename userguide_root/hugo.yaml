@@ -10,7 +10,7 @@ minify:
   disableJSON: false
   disableSVG: false
   disableXML: false
-  minifyOutput: true
+  minifyOutput: false
 
 
 ## Language
@@ -48,18 +48,24 @@ menu:
 
 
 outputs:
-  section: [HTML, RSS, PRINT, FUSE_SEARCH]  # FUSE_SEARCH_DOC,PRINT
-  page: [HTML]   
+  section: 
+    - HTML 
+    - RSS 
+    - PRINT
+    - FUSE_SEARCH
+  page: 
+    - HTML   
+    - FUSE_SEARCH
   home:
     - HTML
     - RSS
     - FUSE_SEARCH
-
-
+  #  - FUSE_SEARCH
   #  - DOCPATHS
 
 params:
-  searchengine: fuse #fuse, pagefind
+  #searchengine: fuse #fuse, pagefind
+  searchengine: pagefind
   doc:
     collapsible: true
   page:

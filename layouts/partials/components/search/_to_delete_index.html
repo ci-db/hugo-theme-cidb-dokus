@@ -11,19 +11,15 @@
 
 <div class="ci-search ci-component-section">    
     <div class="col-auto">
+
         <label for="search" class="visually-hidden">Search</label>
-        <input type="input" class="form-control" id="doc-search" placeholder="{{ $placeholder }}" />
-         {{- partial "components/search/params.html" . }}   
+        <input type="input" class="form-control" id="doc-search" placeholder="{{ $placeholder }}">
     </div> 
     <div class="col-auto mt-2 show-on-search">
         <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> {{ i18n "button_back" . }}</button>
     </div>      
 </div> 
 
-
-<script id="doc-search-no-match-template" type="text/x-js-template">
-    <p>{{ i18n "no_matches_found" . }}</p>
-</script>
 
 <script id="doc-search-result-template" type="text/x-js-template">
     <div id="summary-${key}">
@@ -33,11 +29,9 @@
       ${ isset categories }<p>Categories: ${categories}</p>${ end }
     </div>
 </script>
-{{- $js_search := resources.Get "js/search/search.js" | minify | resources.Copy "js/search.js" }}
-<script src="{{ $js_search.RelPermalink  | relURL }}"></script>
 
 
-{{/* - partial "components/search/script" .  */}} 
+{{- partial "components/search/script" .  }} 
 
 
 
