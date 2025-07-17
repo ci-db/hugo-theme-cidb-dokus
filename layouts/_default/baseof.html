@@ -23,7 +23,8 @@
             {{- $fuse := resources.Get "vendor/fuse.js/dist/fuse.min.js" | minify | resources.Copy "js/fuse.min.js" }}
             <script src="{{ $fuse.RelPermalink  | relURL }}"></script>        
             {{- $jquery_marks := resources.Get "vendor/jquery.marks/jquery.mark.min.js" | minify | resources.Copy "js/jquery.mark.min.js" }}
-            <script src="{{ $jquery_marks.RelPermalink  | relURL }}"></script>        
+            <script src="{{ $jquery_marks.RelPermalink  | relURL }}"></script>                 
+ 
         {{- end }}
         {{ block "search-scripts" . }}{{ end }}        
         {{ block "scripts" . }}{{ end }}          

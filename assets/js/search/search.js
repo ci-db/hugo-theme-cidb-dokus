@@ -1,8 +1,10 @@
 
 
-var params;
-var fuseOptions;
-var pagefind;
+var ciParams;
+var ciFuseOptions;
+var ciPagefind;
+var ciFusePages;
+var ciSummaryInclude;
 
 
 
@@ -53,14 +55,14 @@ function populateResults(result, searchQuery) {
 
     var data = {};
     $.each(result, function (key, value) {
-        if (params.engine == "fuse") {
+        if (ciParams.engine == "fuse") {
             var contents = value.item.contents;
             var snippet = "";
             var snippetHighlights = [];
             var tags = [];
 
 
-            if (fuseOptions.tokenize) {
+            if (ciFuseOptions.tokenize) {
                 snippetHighlights.push(searchQuery);
             } else {
                 $.each(value.matches, function (matchKey, mvalue) {
@@ -68,8 +70,8 @@ function populateResults(result, searchQuery) {
                         snippetHighlights.push(mvalue.value);
 
                     } else if (mvalue.key == "contents") {
-                        start = mvalue.indices[0][0] - summaryInclude > 0 ? mvalue.indices[0][0] - summaryInclude : 0;
-                        end = mvalue.indices[0][1] + summaryInclude < contents.length ? mvalue.indices[0][1] + summaryInclude : contents.length;
+                        start = mvalue.indices[0][0] - ciSummaryInclude > 0 ? mvalue.indices[0][0] - ciSummaryInclude : 0;
+                        end = mvalue.indices[0][1] + ciSummaryInclude < contents.length ? mvalue.indices[0][1] + ciSummaryInclude : contents.length;
                         snippet += contents.substring(start, end);
                         snippetHighlights.push(mvalue.value.substring(mvalue.indices[0][0], mvalue.indices[0][1] - mvalue.indices[0][0] + 1));
                     }
@@ -77,7 +79,7 @@ function populateResults(result, searchQuery) {
             }
 
             if (snippet.length < 1) {
-                snippet += contents.substring(0, summaryInclude * 2);
+                snippet += contents.substring(0, ciSummaryInclude * 2);
             }
             data = {
                 key: key,
@@ -89,7 +91,7 @@ function populateResults(result, searchQuery) {
                 snippet: snippet
             }
 
-        } else if (params.engine == "pagefind") {
+        } else if (ciParams.engine == "pagefind") {
             data = {
                 key: key,
                 title: value.meta.title,
@@ -107,13 +109,13 @@ function populateResults(result, searchQuery) {
         $('#doc-search-results .results').append(output);
 
 
-        if (params.engine == "fuse") {
+        if (ciParams.engine == "fuse") {
 
             if (snippetHighlights != undefined) {
 
                 $.each(snippetHighlights, function (snipkey, snipvalue) {
                     if (snipvalue != undefined && snipkey != undefined) {
-                        console.log("TEST", snipvalue)
+                        //.log("TEST", snipvalue)
                         $("#summary-" + key).mark(snipvalue);
                     }
                 });
@@ -155,42 +157,36 @@ async function executeSearch(searchQuery) {
 
     var result;
 
-    if (params.engine == "fuse") {
+    if (ciParams.engine == "fuse") {
 
-        if (pages == null) {
-            var response = await fetch(params.fuseIndex);
-            const data = await response.json();
-            pages = data;
-        }
-
-        var fuse = new Fuse(pages, fuseOptions);
+        var fuse = new Fuse(ciFusePages, ciFuseOptions);
 
         result = fuse.search(searchQuery);
     }
 
-    if (params.engine == "pagefind") {
+    if (ciParams.engine == "pagefind") {
 
 
 
-        const search = await pagefind.search(searchQuery);
+        const search = await ciPagefind.search(searchQuery);
         const resultAll = await Promise.all(search.results.slice(0, 100).map(r => r.data()));
 
        
-        if (params.pageType != "doc") {
-            console.log(params.url)
+        if (ciParams.pageType != "doc") {
+           // console.log(ciParams.url)
             result = resultAll.filter(function (element) {
-                return element.url.indexOf(params.url) == 0;
+                return element.url.indexOf(ciParams.url) == 0;
             });
 
         }
         else {
             result = resultAll.filter(function (element) {
-                return element.url.indexOf(params.subDir) == 0;
+                return element.url.indexOf(ciParams.subDir) == 0;
             });
         }
     }
 
-        console.log(result)
+        //console.log(result)
 
     if (result.length > 0) {
         populateResults(result, searchQuery);
@@ -205,20 +201,30 @@ jQuery(async function () {
 
 
 
-    params = $("#doc-search-params").data()
+    ciParams = $("#doc-search-params").data()
 
 
 
-    if (params.engine == "pagefind") {
-        pagefind = await import(params.url + "_pagefind/pagefind.js");
-        await pagefind.options({
-            baseUrl: params.url,
+    if (ciParams.engine == "pagefind") {
+        ciPagefind = await import(ciParams.url + "_pagefind/pagefind.js");
+        await ciPagefind.options({
+            baseUrl: ciParams.url,
             // bundlePath: "/"
         });
-        pagefind.init();
+        ciPagefind.init();
 
-    } else if (params.engine == "fuse") {
-        fuseOptions = {
+    } else if (ciParams.engine == "fuse") {
+        ciSummaryInclude = 300
+        ciFuseOptions = {
+            shouldSort: true,
+            includeMatches: true,
+            threshold: 0.0,
+            tokenize:true,
+            ignoreLocation: true,
+            //location: 0,
+            distance: 1000,
+            maxPatternLength: 32,
+            minMatchCharLength: 1,            
             /*
             shouldSort: true,
             includeMatches: true,
@@ -228,14 +234,27 @@ jQuery(async function () {
             distance: 100,
             maxPatternLength: 32,
             minMatchCharLength: 1,
-            */
             keys: [
                 {name:"title",weight:0.8},
                 {name:"contents",weight:0.5},
                 {name:"tags",weight:0.3},
                 {name:"categories",weight:0.3}
             ]
+            */
+            keys: [
+                {name:"title",weight:1.0},
+                {name:"contents",weight:1.0},
+                {name:"tags",weight:0.3},
+                {name:"categories",weight:0.3}
+            ]
         };
+
+        if (ciFusePages == null) {
+            var response =  await fetch(ciParams.fuseIndex);
+            ciFusePages = await response.json();
+        }
+
+
     } else {
         console.log("no search engine found!")
     }
@@ -243,6 +262,7 @@ jQuery(async function () {
 
 
     $("#doc-search").on("keyup", (event) => {
+        console.log("key",event)
         startTimer()
     });
 

@@ -32,6 +32,7 @@
        
 /*, #breadcrumb a" */
         $( "#sidebar .ajax-call").click(function(event) {
+            console.log("call")
             event.preventDefault();
             console.log("test")
             var This = this;
@@ -40,6 +41,7 @@
 
             var $div = $('<div>');
             $div.load(url, function(data,ret) {
+                
                 if (ret == 'success') { 
                     history.replaceState(null, null, url)
 
