@@ -22,6 +22,12 @@ module:
   mounts:
     - source: assets
       target: assets
+    - source: i18n
+      target: i18n
+    - source: layouts
+      target: layouts
+    - source: static
+      target: static   
     - source: node_modules/bootstrap
       target: assets/vendor/bootstrap
     - source: node_modules/jquery
@@ -30,16 +36,25 @@ module:
       target: assets/vendor/pagedjs
     - source: node_modules/fuse.js
       target: assets/vendor/fuse.js
-    - source: i18n
-      target: i18n
-    - source: layouts
-      target: layouts
-    - source: static
-      target: static   
     - source: node_modules/bootstrap-icons
       target: assets/vendor/bootstrap-icons 
     - source: node_modules/bootstrap-icons/font/fonts
       target: static/fonts
+
+    - source: ../../node_modules/bootstrap
+      target: assets/vendor/bootstrap
+    - source: ../../node_modules/jquery
+      target: assets/vendor/jquery
+    - source: ../../node_modules/pagedjs
+      target: assets/vendor/pagedjs
+    - source: ../../node_modules/fuse.js
+      target: assets/vendor/fuse.js
+    - source: ../../node_modules/bootstrap-icons
+      target: assets/vendor/bootstrap-icons 
+    - source: ../../node_modules/bootstrap-icons/font/fonts
+      target: static/fonts
+  
+
    # - source: node_modules/bootstrap-icons/
     #  target: static/css//bootstrap-icons/
 #    - source: ../../node_modules/bootstrap
