@@ -33,8 +33,9 @@
       ${ isset categories }<p>Categories: ${categories}</p>${ end }
     </div>
 </script>
-        {{- $js_search := resources.Get "js/search/search.js"  | resources.Copy "js/search.js" }}
-        <script src="{{ $js_search.RelPermalink  | relURL }}"></script>
+
+{{- $js_search := resources.Get "js/search/search.js"  | resources.Copy "js/search.js" }}
+<script src="{{ $js_search.RelPermalink  | relURL }}"></script>
 
 
 {{/* - partial "components/search/script" .  */}} 
