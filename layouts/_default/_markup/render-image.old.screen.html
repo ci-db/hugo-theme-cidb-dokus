@@ -41,4 +41,4 @@
     {{ end }}
 </figure>
 {{- else -}}
-<img src="{{ .Destination | safeURL }}" alt="{{ $.Text }}" />{{- end -}}
+<img src="{{ "" | relURL }}{{ .Destination | safeURL }}" alt="{{ $.Text }}" />{{- end -}}

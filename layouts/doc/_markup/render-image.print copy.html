@@ -7,6 +7,7 @@
 {{- end -}}
 
 <div class="ci-image-wrapper">
+   
 {{- with $img -}}
 {{ $large := $img.Resize "1680x" }}
 {{ if lt $img.Width $large.Width }}
