@@ -4,3 +4,4 @@
 /resources
 /static/_pagefind
 .hugo_build.lock
+.env

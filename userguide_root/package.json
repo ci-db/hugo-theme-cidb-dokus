@@ -4,12 +4,11 @@
   "repository": "github:cidb/hugo-theme-cidb-dokus",
   "license": "Apache-2.0",
   "scripts": {
-    "_cd:docs": "cd userguide_root &&",
-    "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
-    "_build:paged_search_index": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
-    "_build:paged_search_index2": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind",
+    "_dev": "hugo   --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
+    "_build:paged_search_index": "hugo  --cleanDestinationDir -d 'public_pagefind' && pagefind --site './public_pagefind' --output-path ./static/_pagefind",
+    "search": "npm run _build:paged_search_index",
     "dev": "dotenv -- npm run _dev",
-    "build": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir"
+    "build": "hugo  --cleanDestinationDir"
   },
   "dependencies": {
     "bootstrap": "5.3.7",
