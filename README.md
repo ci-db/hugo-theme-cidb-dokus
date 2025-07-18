@@ -1,6 +1,4 @@
-# s
+# install
 
-# snippets
-
-hugo --themesDir ../.. --bind 128.140.68.242 --baseURL http://128.140.68.242:1313 server
+    cd themes &&  git submodule add https://github.com/ci-db/hugo-theme-cidb-dokus.git
 
