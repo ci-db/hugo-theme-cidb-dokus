@@ -51,3 +51,12 @@
         
     }
 }
+.ci-image-float-no {
+    
+    .ci-image {
+        &.ci-image-float {
+            float:none;
+        }
+        
+    }
+}
