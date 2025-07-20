@@ -4,7 +4,7 @@
 <script src="{{ $pagedjs_plugin.RelPermalink  | relURL }}"></script>
 
 
-<script src="{{ "js/pagedjs/plugins/plugins.js" | relURL }}"></script>  
+
 
 <script>
     Paged.registerHandlers(Toc);  
@@ -29,6 +29,6 @@
     }
     
 </script>
-{{ $options_css2 := (dict "targetPath" "assets/css/media.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+{{ $options_css2 := (dict "targetPath" "css/media.css" "outputStyle" "compressed" "enableSourceMap" false) }}
 {{ $style2 := resources.Get "scss/print/media.scss" | css.Sass $options_css2 }}
 <link rel="stylesheet" href="{{ $style2.Permalink }}?v={{ now.Unix }}"  media="print">

@@ -1,13 +1,25 @@
 {{ $img := .Page.Resources.GetMatch .Params.print.cover.image }}
 {{- if and (not $img) .Page.File -}}
-<figure class="cover-image">
+<div class="ci-cover-image-wrapper">
+    <figure class="cover-image">
     <img src="{{ .Params.print.cover.image }}" />   
 </figure>
+</div>
 {{- else -}}
 {{- with $img -}}
-{{- $large := $img.Resize "680x" -}}
-<figure class="cover-image">
+
+{{ $large := $img.Resize "1280x" }}
+
+{{ if lt $img.Width $large.Width }}
+{{ $large = $img.Resize ( printf "%vx" $img.Width )}}
+{{ end }}
+
+
+
+<div class="ci-cover-image-wrapper">
+    <figure class="cover-image">
     <img src="{{ $large.RelPermalink }}" />   
 </figure>
+</div>
 {{- end -}}
 {{ end }}

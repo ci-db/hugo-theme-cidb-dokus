@@ -1,0 +1,53 @@
+
+.ci-image-wrapper {
+    text-align: center;
+}
+
+
+
+.ci-image {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    font-family: sans-serif;
+    font-size: 0.7em;
+
+    @for $i from 1 through 100 {
+        &.ci-image-w-#{$i} {
+            width: $i#{'%'};
+        }
+    }
+
+    &.ci-image-float {
+        float:left;
+        margin: 8px 8px 8px 0;
+    }
+
+
+    img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #000;
+    }       
+
+
+    .ci-image-caption {
+        width: 0;
+        min-width: 100%;
+        line-height: 20px;
+        padding: 3px;
+        box-sizing: border-box;
+        text-align: center;
+        font-style: italic;
+    } 
+}
+
+.ci-image-float-right {
+    .ci-image {
+        &.ci-image-float {
+            float:right;
+            margin: 8px 0 8px 8px;
+        }
+        
+    }
+}

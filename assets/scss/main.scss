@@ -1,3 +1,8 @@
-@import "reset";
-@import "icons";
-@import "dokus";
+//@import "reset";
+//@import "../../vendor/bootstrap/scss/functions";
+@import "../vendor/bootstrap/scss/bootstrap.scss";
+@import "defaults/content/main";
+@import "defaults/icons";
+@import "defaults/layout";
+@import "defaults/common";
+@import "doc/content"

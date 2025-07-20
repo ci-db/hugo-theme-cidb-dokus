@@ -29,4 +29,4 @@
 {{ $style_main := resources.Get "scss/main.scss" | css.Sass $options_main }}
 <link rel="stylesheet" href="{{ $style_main.Permalink }}?v={{ now.Unix }}">
 {{- partial "custom/head.html" . -}}
-<base href="{{ .Site.BaseURL }}">
+<!--<base href="{{ .Site.BaseURL }}">-->

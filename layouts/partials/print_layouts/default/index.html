@@ -2,7 +2,7 @@
 <html>
     <head>
         {{ partial "print/head" . }}
-        {{ $options_css1 := (dict "targetPath" "assets/css/print.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+        {{ $options_css1 := (dict "targetPath" "css/print.css" "outputStyle" "compressed" "enableSourceMap" false) }}
         {{ $style1 := resources.Get "scss/print/layout/default.scss" | css.Sass $options_css1 }}
         <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">        
         

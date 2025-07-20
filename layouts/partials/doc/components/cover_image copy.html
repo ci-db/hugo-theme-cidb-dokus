@@ -1,0 +1,13 @@
+{{ $img := .Page.Resources.GetMatch .Params.print.cover.image }}
+{{- if and (not $img) .Page.File -}}
+<figure class="cover-image">
+    <img src="{{ .Params.print.cover.image }}" />   
+</figure>
+{{- else -}}
+{{- with $img -}}
+{{- $large := $img.Resize "680x" -}}
+<figure class="cover-image">
+    <img src="{{ $large.RelPermalink }}" />   
+</figure>
+{{- end -}}
+{{ end }}

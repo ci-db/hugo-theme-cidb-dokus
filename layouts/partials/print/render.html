@@ -1,0 +1,36 @@
+{{ define "recurse-content" }}
+  {{ $s := .section }}
+  {{ $psid := .psid }}
+  {{ $pages := (union $s.Pages $s.Sections).ByWeight }}
+  {{ $subSection := 1 }}
+
+
+  {{ range where $pages ".Params.no_print" "!=" true }}
+    {{ $sid := printf "%s%d" $psid $subSection }}
+    {{ $subSection = add $subSection 1 }}
+
+
+     {{ .Page.Content }}  
+
+
+    {{ if .IsSection }}
+      {{ template "recurse-content" (dict "section" . "psid" (printf "%s." $sid) ) }}
+    {{ end }}	
+
+  {{ end }}
+{{ end }}
+
+
+<div class="td-content">
+<div class="pageinfo pageinfo-primary d-print-none">
+
+</div>
+
+
+<div class="content">
+      {{ .Content }}
+</div>
+</div>
+
+
+{{ template "recurse-content" (dict "section" .CurrentSection "psid" "") }}

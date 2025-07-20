@@ -1,6 +1,7 @@
 
 
- 
+
+
 outputFormats:
   PRINT:
     baseName: index
@@ -53,16 +54,6 @@ module:
       target: assets/vendor/bootstrap-icons 
     - source: ../../node_modules/bootstrap-icons/font/fonts
       target: static/fonts
-  
-
-   # - source: node_modules/bootstrap-icons/
-    #  target: static/css//bootstrap-icons/
-#    - source: ../../node_modules/bootstrap
-#      target: assets/vendor/bootstrap        
-#    - source: assets/_vendor/bootstrap/scss
-#      target: assets/vendor/bootstrap/scss/vendor        
-#    - source: ../../node_modules/bootstrap-icons
-#      target: assets/vendor/bootstrap-icons        
 
 
   #imports:

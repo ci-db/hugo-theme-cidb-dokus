@@ -12,7 +12,7 @@
 
 {{- partial "breadcrumb" (dict  "root" $rootBreandcrumb "current" . ) -}}
 
-<div class="ci-component">
+<div class="ci-component ci-doc">
     <div id="doc-search-results" class="ci-component-section show-on-search no-print">
         <h3>{{ i18n "search_result" . }}</h3>
         <div class="results"></div>
@@ -44,7 +44,7 @@
     <div id="cover">
         <div id="cover-image">
         {{ if isset .Params.print.cover "image" }}
-        {{ partial "print/cover_image" . }}
+        {{ partial "doc/components/cover_image" . }}
         {{ end }}
         </div>
         <h1>{{ .Params.print.cover.title }}</h1>            

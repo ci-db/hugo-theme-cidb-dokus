@@ -1,9 +1,10 @@
-@import "../../reset";
+@import "../../defaults/reset";
+@import "../../defaults/common";
 @import "../default";
 @import "../toc";
 @import "../code";
 
-#pages h1, #table-of-content h1 {        
+.ci-page h1, #table-of-content h1 {        
     font-size: 18pt;
     font-weight: bold;
 }
@@ -11,11 +12,11 @@
     text-align: left;
 }
 
-#pages {
+.ci-page {
     font-size: 12pt;
 
     .main-title {
-        page-break-before: always;
+        break-before: always;
     }
 
     blockquote {
@@ -136,6 +137,6 @@ body {
  }
  
  #table-of-content {
-    page-break-before: always;
+    break-before: always;
  }
 

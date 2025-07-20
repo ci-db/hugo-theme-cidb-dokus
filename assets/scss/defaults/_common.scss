@@ -1,0 +1,36 @@
+.break-after {
+    break-after: always;
+}
+
+.break-before {
+    break-before: always;
+}
+
+.space-tb-0,.space-b-0 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.space-tb-0,.space-t-0 {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+@for $i from 0 through 20 {
+
+    .padding-tb-#{$i}, .padding-b-#{$i} {
+        padding-bottom:$i#{'px'};
+
+    }
+    .padding-tb-#{$i}, .padding-t-#{$i} {
+        padding-top: $i#{'px'};
+    }
+    .margin-tb-#{$i}, .margin-b-#{$i} {
+        margin-bottom: $i#{'px'};
+
+    }
+    .margin-tb-#{$i}, .margin-t-#{$i} {
+        margin-top: $i#{'px'};
+
+    }
+
+}
