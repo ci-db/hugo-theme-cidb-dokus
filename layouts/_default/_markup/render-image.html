@@ -3,15 +3,16 @@
 {{- $img := "" -}}
 {{ $q := $u.Query }}
 {{ $weite := "" }}
+{{ $imgClass := "ci-image" }}
 
 {{- if not $u.IsAbs -}}
   {{- $path := strings.TrimPrefix "./" $u.Path -}}
 
+
   {{- with or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
-      
+        
     {{- $src = .RelPermalink -}}
 
-    
     {{- with $u.RawQuery -}}
       {{- $src = printf "%s?%s" $src . -}}      
     {{- end -}}
@@ -25,8 +26,7 @@
     {{ $large = $img.Resize ( printf "%vx" $img.Width )}}
     {{ $src =  $large.RelPermalink }}
 
-
-  {{- end -}}
+{{- end -}}
 
 
 {{- end -}}
@@ -35,33 +35,37 @@
 {{ $weite = $q.Get "w" }}
 
 
-{{ $wrapperClass := "ci-image"}}
 
 {{- if not (eq $weite "") -}}
-{{ $wrapperClass = printf "%s ci-image-w-%s" $wrapperClass $weite }}
+  {{ $imgClass = printf "%s ci-image-w-%s" $imgClass $weite }}
 {{- end -}}
+
+
+
 
 {{- if .IsBlock -}}
-<div class="ci-image-wrapper">
-<figure 
+
+  {{ $wrapperClass := "ci-image-wrapper" }}
+
+  <div 
+  {{- range $k, $v := .Attributes -}}
+    {{- if $v -}}
+      {{- if eq $k "class" -}}
+            {{- $c := printf "%s" ($v | transform.HTMLEscape) -}}
+            {{ $wrapperClass = printf "%s %s" $wrapperClass $c }}
+      {{ else }}
+          {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr -}}
+      {{ end }}
+    {{- end -}}
+  {{- end}}
+
+class="{{ $wrapperClass }}">
+
+<figure class="{{ $imgClass }}">
 {{ else }}
-  {{ $wrapperClass = printf "%s %s" $wrapperClass "ci-image-float" }}
-
-<span
+  <span class="{{ $imgClass }}">
 {{- end -}}
-
-{{- range $k, $v := .Attributes -}}
-  {{- if $v -}}
-     {{- if eq $k "class" -}}
-          {{- $c := printf "%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr -}}
-          {{ $wrapperClass = printf "%s ci-image-w-%s" $wrapperClass $c }}
-     {{ else }}
-        {{- printf " %s=%q" $k ($v | transform.HTMLEscape) | safeHTMLAttr -}}
-     {{ end }}
-  {{- end -}}
-{{- end}}
- class="{{ $wrapperClass }}"
->
+ 
 
   
   <img  src="{{ $src }}" alt="{{ .PlainText }}"

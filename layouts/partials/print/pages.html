@@ -4,7 +4,7 @@
 {{ $site := .site }}
 {{ $item := .item }}
 
-<div class="ci-page">
+<div class="ci-page ci-page-content">
 
 
 
@@ -23,6 +23,7 @@
 {{ end }}
 
 <div class="content">
+    
     {{ if isset .Params "content_from"}}                    
     {{ $page := $site.GetPage .Params.content_from }}
     {{ $page.Content }}  

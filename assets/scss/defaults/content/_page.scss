@@ -1,0 +1,113 @@
+
+
+
+.ci-page-content {
+
+    pre {
+        code {
+            display: block;
+            background-color: #f1f2f2;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+    }
+
+    .highlight {
+        margin-bottom: 1rem;
+
+        pre {
+            margin-bottom: 0;
+            code {
+                display: unset;
+                background-color: unset;
+                padding: unset;
+                border: unset;
+            }
+        }
+
+
+
+        > pre {
+            padding: 10px;
+        }
+
+        > div {
+            padding: 10px 0;
+        }
+    }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 1.5em 10px;
+        padding: 1em 10px 0.1em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+    
+    /*
+    h1:first-of-type  {
+       text-decoration: underline;
+    }
+
+
+    h1 {
+        font-size: 2.1rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    */
+
+    .ci-image-wrapper {
+        margin-bottom: 1rem
+    }
+
+    margin-bottom: 1rem
+
+    p {
+        line-height: 28px;
+    }
+    h2 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+
+        td, th {
+            padding: 6px;
+            vertical-align: top;
+            border: 1px solid #ccc;
+        }
+    }
+    table.hide-header {
+        th {
+            display: none;
+        }
+    }
+    table.no-padding {
+        th, td {
+            padding: 0;
+        }
+    }
+
+    table.no-padding {
+        th, td {
+            padding: 0;
+        }
+    }
+
+    table {
+        @for $i from 1 through 10 {
+            @for $w from 1 through 20 {
+                &.w-#{$i}-#{$w * 5} {
+                    td:nth-child(#{$i}){
+                        width: #{$w * 5}#{'%'};
+                    }
+                }
+            }
+        }
+    }
+
+}

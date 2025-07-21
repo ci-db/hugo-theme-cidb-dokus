@@ -67,13 +67,19 @@
     {{ end }}
     {{/*
     {{- $content := $page.Content -}}  
+    {{ $content = replaceRE `(?s)<h5(.*?)>(.*?)</h5>` "<h6$1>$2</h6>" $content }}
     {{ $content = replaceRE `(?s)<h4(.*?)>(.*?)</h4>` "<h5$1>$2</h5>" $content }}
     {{ $content = replaceRE `(?s)<h3(.*?)>(.*?)</h3>` "<h4$1>$2</h4>" $content }}
     {{ $content = replaceRE `(?s)<h2(.*?)>(.*?)</h2>` "<h3$1>$2</h3>" $content }}
     {{ $content = replaceRE `(?s)<h1(.*?)>(.*?)</h1>` "<h2$1>$2</h2>" $content }}
     {{ $content | safeHTML   }}
     */}}
-    {{-  $page.Content -}} 
+    
+        <div class="ci-page-content">
+
+        {{-  $page.Content -}} 
+
+        </div>
     </div>
 
     <!--

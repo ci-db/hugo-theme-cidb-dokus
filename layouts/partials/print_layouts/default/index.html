@@ -39,32 +39,52 @@
             overflow: hidden;
             align-items: center;
         }
-         .footer-container .left {
+        
+        .footer-container .left {
             margin-right: auto;
         }        
         
     </style>
     <body>
         <!-- Cover -->
+       
         {{ if isset .Params.print "cover" }}            
-        <div id="cover">
-            <div id="cover-image">
+        <div id="cover">        
             {{ if isset .Params.print.cover "image" }}
-            {{ partial "print/cover_image" . }}
+                <div id="cover-image">
+                {{ partial "print/cover_image" . }}
+                </div>
             {{ end }}
-            </div>
-            <h1>{{ .Params.print.cover.title }}</h1>            
-            <h2>{{ .Params.print.cover.subtitle  }}</h2>
-            <div id="cover-content">
-            {{ .Content }}
+            {{ if isset .Params.print.cover "title" }}
+                <h1>{{ .Params.print.cover.title }}</h1>            
+            {{ end }}
+            {{ if isset .Params.print.cover "subtitle" }}
+                <h2>{{ .Params.print.cover.subtitle  }}</h2>
+            {{ end }}
+            <div id="cover-content" class="content">
+                <div class="ci-page-content">
+                    {{ .Content }}
+                </div>
             </div>
         </div>
+        {{ else  }}
+            <div class="content">   
+                <div class="ci-page-content">
+                    {{ .Content }}
+                </div>        
+            </div>
+        {{ end }}
+
+        {{ if isset .Params.print "toc" }}  
         <!-- Table of Content -->
         <div id="table-of-content" >
             <h1>Inhaltsverzeichnis</h1>
             <div id="toc"></div>
-        </div>
+        </div>                        
         {{ end }}
+
+
+
 
         <div class="layout-page-header">                
             {{ .Params.print.cover.title  }} -   {{ .Params.print.cover.subtitle  }}

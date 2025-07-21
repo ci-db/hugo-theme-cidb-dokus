@@ -41,7 +41,7 @@ function createToc(config){
     }
 
     // create toc list
-    let tocElements = content.querySelectorAll("#pages .title-element");  
+    let tocElements = content.querySelectorAll(".ci-page .title-element");  
 
     for(var i= 0; i < tocElements.length; i++){
         let tocElement = tocElements[i];

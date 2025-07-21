@@ -15,7 +15,7 @@
     margin-top: 0;
 }
 
-@for $i from 0 through 20 {
+@for $i from 0 through 10 {
 
     .padding-tb-#{$i}, .padding-b-#{$i} {
         padding-bottom:$i#{'px'};
