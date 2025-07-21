@@ -82,6 +82,7 @@ module:
           target: static/fonts   
         - source: font
           target: assets/vendor/bootstrap-icons/font  
+
     - path: github.com/krisk/Fuse
       disable: false
       mounts:

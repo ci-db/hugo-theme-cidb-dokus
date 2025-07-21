@@ -1,7 +1,23 @@
 baseURL: /
 title: cidb Dokus
-theme: [hugo-theme-cidb-dokus]
+#theme: [hugo-theme-cidb-dokus]
 
+
+outputs:
+  section: 
+    - HTML 
+    - RSS 
+    - PRINT
+  #  - FUSE_SEARCH
+  page: 
+    - HTML   
+  #  - FUSE_SEARCH
+  home:
+    - HTML
+    - RSS
+   # - FUSE_SEARCH
+  #  - FUSE_SEARCH
+  #  - DOCPATHS
 
 minify:
   disableCSS: false
@@ -47,21 +63,6 @@ menu:
       post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
 
 
-outputs:
-  section: 
-    - HTML 
-    - RSS 
-    - PRINT
-    - FUSE_SEARCH
-  page: 
-    - HTML   
-    - FUSE_SEARCH
-  home:
-    - HTML
-    - RSS
-    - FUSE_SEARCH
-  #  - FUSE_SEARCH
-  #  - DOCPATHS
 
 params:
   #searchengine: fuse #fuse, pagefind
