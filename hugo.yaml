@@ -55,6 +55,19 @@ module:
     - source: ../../node_modules/bootstrap-icons/font/fonts
       target: static/fonts
 
+    - source: assets/_vendor/bootstrap
+      target: assets/vendor/bootstrap
+    - source: assets/_vendor/jquery
+      target: assets/vendor/jquery
+    - source: assets/_vendor/pagedjs
+      target: assets/vendor/pagedjs
+    - source: assets/_vendor/fuse.js
+      target: assets/vendor/fuse.js
+    - source: assets/_vendor/bootstrap-icons
+      target: assets/vendor/bootstrap-icons 
+    - source: assets/_vendor/bootstrap-icons/font/fonts
+      target: static/fonts      
+
 
   #imports:
   #  - path: github.com/twbs/bootstrap
