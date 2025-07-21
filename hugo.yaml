@@ -31,10 +31,10 @@ module:
       target: static   
     - source: node_modules/bootstrap
       target: assets/vendor/bootstrap
-    - source: node_modules/jquery
-      target: assets/vendor/jquery
-    - source: node_modules/pagedjs
-      target: assets/vendor/pagedjs
+    #- source: node_modules/jquery
+    #  target: assets/vendor/jquery
+    #- source: node_modules/pagedjs
+    #  target: assets/vendor/pagedjs
     - source: node_modules/fuse.js
       target: assets/vendor/fuse.js
     - source: node_modules/bootstrap-icons
@@ -44,16 +44,16 @@ module:
 
     - source: ../../node_modules/bootstrap
       target: assets/vendor/bootstrap
-    - source: ../../node_modules/jquery
-      target: assets/vendor/jquery
-    - source: ../../node_modules/pagedjs
-      target: assets/vendor/pagedjs
-    - source: ../../node_modules/fuse.js
-      target: assets/vendor/fuse.js
     - source: ../../node_modules/bootstrap-icons
       target: assets/vendor/bootstrap-icons 
     - source: ../../node_modules/bootstrap-icons/font/fonts
       target: static/fonts
+    #- source: ../../node_modules/jquery
+    #  target: assets/vendor/jquery
+    #- source: ../../node_modules/pagedjs
+    #  target: assets/vendor/pagedjs
+    - source: ../../node_modules/fuse.js
+      target: assets/vendor/fuse.js
 
     - source: assets/_vendor/bootstrap
       target: assets/vendor/bootstrap
@@ -67,13 +67,23 @@ module:
       target: assets/vendor/bootstrap-icons 
     - source: assets/_vendor/bootstrap-icons/font/fonts
       target: static/fonts      
-
-
-  #imports:
-  #  - path: github.com/twbs/bootstrap
-  #    disable: false
-  #    mounts:
-  #      - source: scss
-  #        target: assets/vendor/bootstrap/scss
-  #      - source: dist/js
-  #        target: assets/vendor/bootstrap/dist/js      
+  imports:
+    - path: github.com/twbs/bootstrap
+      disable: false
+      mounts:
+        - source: scss
+          target: assets/vendor/bootstrap/scss
+        - source: dist/js
+          target: assets/vendor/bootstrap/dist/js
+    - path: github.com/twbs/icons
+      disable: false
+      mounts:
+        - source: font/fonts
+          target: static/fonts   
+        - source: font
+          target: assets/vendor/bootstrap-icons/font  
+    - path: github.com/krisk/Fuse
+      disable: false
+      mounts:
+        - source: dist
+          target: assets/vendor/fuse.js/dist 

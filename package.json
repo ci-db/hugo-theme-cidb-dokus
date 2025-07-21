@@ -4,6 +4,9 @@
   "repository": "github:cidb/hugo-theme-cidb-dokus",
   "license": "Apache-2.0",
   "scripts": {
+    "_cp:jquery": "npx cpy 'node_modules/jquery/dist/*jquery.min.js' assets/_vendor/jquery/dist/",
+    "_cp:pagedjs": "npx cpy 'node_modules/pagedjs/dist/*paged.polyfill.min.js' assets/_vendor/pagedjs/dist/",
+    "ci:prepare": "npm run _cp:jquery && npm run _cp:pagedjs",
     "_cd:docs": "cd userguide_root &&",
     "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
     "_build:paged_search_index": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
