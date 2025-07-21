@@ -3,7 +3,7 @@
 
 
 outputFormats:
-  PRINT:
+  print:
     baseName: index
     isHTML: true
     mediaType: text/html
@@ -31,10 +31,6 @@ module:
       target: static   
     - source: node_modules/bootstrap
       target: assets/vendor/bootstrap
-    #- source: node_modules/jquery
-    #  target: assets/vendor/jquery
-    #- source: node_modules/pagedjs
-    #  target: assets/vendor/pagedjs
     - source: node_modules/fuse.js
       target: assets/vendor/fuse.js
     - source: node_modules/bootstrap-icons
@@ -48,10 +44,6 @@ module:
       target: assets/vendor/bootstrap-icons 
     - source: ../../node_modules/bootstrap-icons/font/fonts
       target: static/fonts
-    #- source: ../../node_modules/jquery
-    #  target: assets/vendor/jquery
-    #- source: ../../node_modules/pagedjs
-    #  target: assets/vendor/pagedjs
     - source: ../../node_modules/fuse.js
       target: assets/vendor/fuse.js
 
@@ -59,6 +51,8 @@ module:
       target: assets/vendor/bootstrap
     - source: assets/_vendor/jquery
       target: assets/vendor/jquery
+    - source: assets/_vendor/jquery.marks
+      target: assets/vendor/jquery.marks
     - source: assets/_vendor/pagedjs
       target: assets/vendor/pagedjs
     - source: assets/_vendor/fuse.js

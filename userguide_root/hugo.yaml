@@ -3,15 +3,28 @@ title: cidb Dokus
 #theme: [hugo-theme-cidb-dokus]
 
 
+outputFormats:
+  print:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _print    
+    permalinkable: false
+  fuse_search:
+    baseName: _searchindex 
+    isHTML: false
+    mediaType: application/json
+    permalinkable: false          
+    
 outputs:
   section: 
     - HTML 
     - RSS 
     - PRINT
-  #  - FUSE_SEARCH
+    - FUSE_SEARCH
   page: 
     - HTML   
-  #  - FUSE_SEARCH
+    - FUSE_SEARCH
   home:
     - HTML
     - RSS
@@ -66,7 +79,7 @@ menu:
 
 params:
   #searchengine: fuse #fuse, pagefind
-  searchengine: pagefind
+  searchengine: fuse
   doc:
     collapsible: true
   page:
@@ -89,3 +102,5 @@ module:
     #  target: content/project/changelog.md
     # source: ../CONTRIBUTING.md
     # target: content/project/contributing.md
+
+##
