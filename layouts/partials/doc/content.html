@@ -63,7 +63,9 @@
     <h1>{{ $page.Title }}</h1>
     {{ end }}
     {{- if ne $page ".Description" "" -}}
-    <p class="content-description">{{ $page.Description }}</p>
+        {{ if ne .Params.hide_description true}}
+        <p class="content-description">{{ $page.Description }}</p>
+        {{ end }}
     {{ end }}
     {{/*
     {{- $content := $page.Content -}}  

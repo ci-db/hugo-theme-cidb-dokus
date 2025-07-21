@@ -1,6 +1,6 @@
 baseURL: /
 title: cidb Dokus
-#theme: [hugo-theme-cidb-dokus]
+theme: [hugo-theme-cidb-dokus]
 
 
 outputFormats:

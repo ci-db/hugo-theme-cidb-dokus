@@ -4,8 +4,8 @@ description: "Description of Working with the Theme"
 cascade: 
     type: doc
 weight: 1
-hide_title: false
-hide_description: false
+hide_title: true
+hide_description: true
 ---
 
 # Willkommen beim dokus-theme
