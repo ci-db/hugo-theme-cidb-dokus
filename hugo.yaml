@@ -67,6 +67,8 @@ module:
       target: assets/vendor/bootstrap-icons 
     - source: assets/_vendor/bootstrap-icons/font/fonts
       target: static/fonts      
+    - source: assets/_vendor/bootstrap/scss
+      target: assets/vendor/bootstrap/scss/vendor      
   imports:
     - path: github.com/twbs/bootstrap
       disable: false
