@@ -1,6 +1,6 @@
 {{- define "main" -}}
 {{- if not (eq .Site.Home .) -}}
-{{- partial "breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
+{{- partial "components/page/breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
 {{- end -}}
 <div data-pagefind-body>
 {{- $page := . -}}

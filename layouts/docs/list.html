@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="col col-12">
 {{ if not (eq .Site.Home .)}}
-{{- partial "breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
+{{- partial "components/page/breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
 {{ end }}
 <div class="ci-component component-docs">
     <h1>{{ .Title }}</h1>
