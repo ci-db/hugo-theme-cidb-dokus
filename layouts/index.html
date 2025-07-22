@@ -1,12 +1,16 @@
-
-{{ define "sidebar" }}
-<p>hallo sidebar</p>
+{{- define "main" -}}
+<div class="col-12">
+    {{- partial "components/page/breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
+    <div data-pagefind-body>
+        {{- $page := . -}}
+        {{- if isset .Params "content_from" -}}            
+            {{- $page := .Site.GetPage .Params.content_from -}}
+        {{- end -}}
+        {{- partial "components/page/title" $page -}}
+        {{- partial "components/page/description" $page -}}    
+        <div class="ci-page-content">
+            {{ $page.Content }}
+        </div>
+    </div>
+</div>
 {{ end }}
-
-
-{{ define "main" }}
-<p>test</p>
-{{ end }}
-
-
-
