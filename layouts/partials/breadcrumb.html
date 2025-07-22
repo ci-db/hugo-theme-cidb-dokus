@@ -1,18 +1,12 @@
 
-{{ $sliceOriginal := slice }}
-{{ $data := newScratch }}
-
-{{ template "breadcrumb-items"  (dict "data" $data "root" .root "node" .current )}}
-
-{{ range ($data.Get "breadcrumb")  }}
-    {{ $sliceOriginal =  $sliceOriginal | append . }} 
-{{ end }}
-
-{{ $breadcrumbArray := partial "helper/reverse-slice.html" $sliceOriginal }}
-
-
-
-{{ $len := (len $breadcrumbArray) }}
+{{- $sliceOriginal := slice -}}
+{{- $data := newScratch -}}
+{{- template "breadcrumb-items"  (dict "data" $data "root" .root "node" .current ) -}}
+{{- range ($data.Get "breadcrumb")  -}}
+    {{- $sliceOriginal =  $sliceOriginal | append . -}} 
+{{- end -}}
+{{- $breadcrumbArray := partial "helper/reverse-slice.html" $sliceOriginal -}}
+{{- $len := (len $breadcrumbArray) }}
 <div id="breadcrumb" class="ci-component">
     <div class="ci-component-section">
         <nav  aria-label="breadcrumb">
@@ -28,26 +22,21 @@
     </div>
 </div>
 
+{{- define "breadcrumb-items" -}}
+    {{- $root := .root -}}
+    {{- $node := .node -}}
+    {{- $data := .data -}}
+    {{- if eq $node.File $root.File -}}
 
+    {{- else -}}
 
-{{ define "breadcrumb-items" }}
+        {{- with .node.Parent  -}}
 
-{{ $root := .root }}
-{{ $node := .node }}
-{{ $data := .data }}
+            {{-  $data.Add "breadcrumb" (slice . ) -}}    
+            {{- template "breadcrumb-items" (dict "data" $data "root"  $root  "node" . ) -}}
 
+        {{ end -}}
+    {{- end -}}
 
-{{ if eq $node.File $root.File }}
-
-{{ else }}
-
-{{ with .node.Parent  }}
-
-{{  $data.Add "breadcrumb" (slice . ) }}    
-{{ template "breadcrumb-items" (dict "data" $data "root"  $root  "node" . ) }}
-
-{{ end }}
-{{ end }}
-
-{{ end}}
+{{- end -}}
 

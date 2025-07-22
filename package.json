@@ -11,8 +11,7 @@
     "_prepare": "npm run _cp:jquery && npm run _cp:pagedjs  && npm run _cp:bs-rfs",
     "ci:prepare": "npm run docs-install && npm run _prepare",
     "_cd:docs": "cd userguide_root &&",
-    "_build:paged_search_index": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
-    "_build:paged_search_index2": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind",
+    "_build:pagedfind": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
     "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
 
 
@@ -22,10 +21,12 @@
     "test:all": "npm run ci:prepare &&  npm run _cd:docs test",
     "test": "npm run _cd:docs test",
 
+    "dev:search": "dotenv -- npm run _build:pagedfind && npm run dev",
     "dev": "dotenv -- npm run _dev",
     "prepare": "npm run docs-install && npm run _prepare",
 
     "build": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir",
+    "build:search": "dotenv -- npm run _build:pagedfind && npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir",
     "postinstall": "npm run _mkdir:hugo-mod"
   },
   "dependencies": {

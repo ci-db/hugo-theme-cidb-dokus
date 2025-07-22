@@ -21,13 +21,13 @@ outputs:
     - HTML 
     - RSS 
     - PRINT
-    - FUSE_SEARCH
+  # - FUSE_SEARCH
   page: 
     - HTML   
   home:
     - HTML
     - RSS
-    - FUSE_SEARCH
+  #  - FUSE_SEARCH
   #  - FUSE_SEARCH
   #  - DOCPATHS
 
@@ -78,7 +78,7 @@ menu:
 
 params:
   #searchengine: fuse #fuse, pagefind
-  searchengine: fuse
+  searchengine: pagefind
   doc:
     collapsible: true
   page:

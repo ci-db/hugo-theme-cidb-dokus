@@ -1,0 +1,5 @@
+{{- if ne . ".Description" "" -}}
+    {{- if ne .Params.hide_description true -}}
+        <p class="content-description">{{ .Description }}</p>
+    {{- end -}}
+{{- end -}}

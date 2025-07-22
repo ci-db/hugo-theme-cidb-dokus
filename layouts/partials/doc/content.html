@@ -51,33 +51,21 @@
         <h2>{{ .Params.print.cover.subtitle  }}</h2>
     </div>
 
-    {{ end }}
+    {{- end -}}
 
     
-    {{ $page := . }}
+    {{- $page := . -}}
     {{- if isset .Params "content_from" -}}            
-    {{- $page := .Site.GetPage .Params.content_from -}}
+        {{- $page := .Site.GetPage .Params.content_from -}}
     {{- end -}}
     {{ if isset .Params.print "cover" }}
+
     {{ else }}
-        {{ if ne .Params.hide_title true}}
-            <h1>{{ $page.Title }}</h1>
-        {{ end }}
+        {{- partial "components/page/title" $page -}}
     {{ end }}
-    {{- if ne $page ".Description" "" -}}
-        {{ if ne .Params.hide_description true}}
-        <p class="content-description">{{ $page.Description }}</p>
-        {{ end }}
-    {{ end }}
-    {{/*
-    {{- $content := $page.Content -}}  
-    {{ $content = replaceRE `(?s)<h5(.*?)>(.*?)</h5>` "<h6$1>$2</h6>" $content }}
-    {{ $content = replaceRE `(?s)<h4(.*?)>(.*?)</h4>` "<h5$1>$2</h5>" $content }}
-    {{ $content = replaceRE `(?s)<h3(.*?)>(.*?)</h3>` "<h4$1>$2</h4>" $content }}
-    {{ $content = replaceRE `(?s)<h2(.*?)>(.*?)</h2>` "<h3$1>$2</h3>" $content }}
-    {{ $content = replaceRE `(?s)<h1(.*?)>(.*?)</h1>` "<h2$1>$2</h2>" $content }}
-    {{ $content | safeHTML   }}
-    */}}
+
+    {{- partial "components/page/description" $page -}}
+    
     
         <div class="ci-page-content">
 

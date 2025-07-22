@@ -3,6 +3,4 @@
     data-sub-dir="{{ relURL "" }}{{ with .File }}{{ .Dir  }}{{ end }}"
     data-engine="{{ .Site.Params.searchengine }}"        
     data-fuse-index="{{ printf "%s_searchindex.json" .RelPermalink }}"
-    data-page-type="{{ .Type }}"
-/>
-
+    data-page-type="{{ .Type }}">

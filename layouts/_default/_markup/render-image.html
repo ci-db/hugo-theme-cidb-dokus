@@ -1,9 +1,9 @@
 {{- $u := urls.Parse .Destination -}}
 {{- $src := $u.String -}}
 {{- $img := "" -}}
-{{ $q := $u.Query }}
-{{ $weite := "" }}
-{{ $imgClass := "ci-image" }}
+{{- $q := $u.Query -}}
+{{- $weite := "" -}}
+{{- $imgClass := "ci-image" -}}
 
 {{- if not $u.IsAbs -}}
   {{- $path := strings.TrimPrefix "./" $u.Path -}}
@@ -32,7 +32,7 @@
 {{- end -}}
 
 
-{{ $weite = $q.Get "w" }}
+{{- $weite = $q.Get "w" -}}
 
 
 
@@ -43,9 +43,9 @@
 
 
 
-{{- if .IsBlock -}}
+{{/*- if .IsBlock - */}}
 
-  {{ $wrapperClass := "ci-image-wrapper" }}
+  {{- $wrapperClass := "ci-image-wrapper" -}}
 
   <div 
   {{- range $k, $v := .Attributes -}}
@@ -62,9 +62,11 @@
 class="{{ $wrapperClass }}">
 
 <figure class="{{ $imgClass }}">
-{{ else }}
+
+{{/* else }}
   <span class="{{ $imgClass }}">
 {{- end -}}
+{{ */}}
  
 
   
@@ -77,12 +79,12 @@ class="{{ $wrapperClass }}">
 {{- end -}}
 
 
-{{- if .IsBlock -}}
+{{/*- if .IsBlock - */}}
 </figure>
 </div>
-{{ else }}
+{{/* else }}
 </span>
-{{- end -}}
+{{- end - */}}
 
 
 

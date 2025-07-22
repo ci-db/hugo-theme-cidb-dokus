@@ -1,10 +1,15 @@
-{{ define "main" }}
+{{- define "main" -}}
 <div class="col-12">
-    <div class="mt-3">
-    {{- partial "components/search/index" .Site.Home  -}} 
+    {{- if not (eq .Site.Home .) -}}
+    {{- partial "breadcrumb" (dict "root" .Site.Home "current" . ) -}}
+    {{- end -}}
+</div>
+<div class="col-12 col-md-3">
+    <div>
+        {{- partial "components/search/index" .Site.Home -}}
     </div>
 </div>
-<div class="col-12 mt-3">
-    {{- partial "components/search/result" .  -}} 
+<div class="col-12 col-md-9">
+    {{- partial "components/search/result" . -}}
 </div>
-{{ end}}
+{{- end -}}

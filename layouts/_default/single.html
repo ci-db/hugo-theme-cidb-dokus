@@ -1,9 +1,16 @@
-{{ define "main" }}
-
+{{- define "main" -}}
+{{- if not (eq .Site.Home .) -}}
+{{- partial "breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
+{{- end -}}
 <div data-pagefind-body>
-<h1> {{ .Title }}</h1>
-<div>
-    {{ .Content }}
+{{- $page := . -}}
+{{- if isset .Params "content_from" -}}            
+    {{- $page := .Site.GetPage .Params.content_from -}}
+{{- end -}}
+{{- partial "components/page/title" $page -}}
+{{- partial "components/page/description" $page -}}    
+<div class="ci-page-content">
+    {{ $page.Content }}
 </div>
 </div>
 {{ end }}

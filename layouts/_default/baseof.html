@@ -8,7 +8,7 @@
         <script src="{{ $bootstrap.RelPermalink  | relURL }}"></script>
     </head>
     <body class="body-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }} type-{{.Type}}">
-        {{ partial "nav.html" . }}
+        {{- partial "nav.html" . -}}
         <main id="main">
             <div class="main-container container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">    

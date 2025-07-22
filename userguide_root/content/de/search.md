@@ -1,11 +1,11 @@
 ---
-title: ergebnis
+title: Suche
 sitemap:
   priority : 0.1
 layout: "search"
 menu: 
   main: 
-    name: "Search"
+    name: "Suche"
     weight: 300
 ---
 
