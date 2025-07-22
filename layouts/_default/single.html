@@ -1,8 +1,6 @@
 {{- define "main" -}}
 <div class="col-12">
-    {{- if not (eq .Site.Home .) -}}
     {{- partial "components/page/breadcrumb" (dict  "root" .Site.Home "current" . ) -}}
-    {{- end -}}
     <div data-pagefind-body>
         {{- $page := . -}}
         {{- if isset .Params "content_from" -}}            

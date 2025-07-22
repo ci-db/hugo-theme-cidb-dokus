@@ -10,25 +10,7 @@
     "dev": "dotenv -- npm run _dev",
     "build": "hugo  --cleanDestinationDir"
   },
-  "dependencies": {
-    "bootstrap": "5.3.7",
-    "bootstrap-icons": "^1.13.1",
-    "dotenv-cli": "^8.0.0",
-    "fuse.js": "^7.1.0",
-    "jquery": "^3.7.1",
-    "pagedjs": "^0.4.3",
-    "pagefind": "^1.3.0"
-  },
-  "devDependencies": {
-    "cpy-cli": "^5.0.0",
-    "prettier": "^3.5.3"
-  },
   "peerDependencies": {
-    "hugo-extended": "0.147.8",
-    "npm-check-updates": "^18.0.1"
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "spelling": "cSpell:ignore hugo-theme-cidb-dokus hugo twbs pkgs userguide_root -"
+    "hugo-extended": "0.147.8"
+  }
 }

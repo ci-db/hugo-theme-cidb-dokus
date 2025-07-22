@@ -14,7 +14,6 @@
     "_build:pagedfind": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
     "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
 
-
     "docs-install": "npm run _cd:docs -- npm install",    
     "get:hugo-modules": "node tools/getHugoModules/index.mjs",
     
