@@ -6,6 +6,13 @@ cascade:
 weight: 1
 hide_title: true
 hide_description: true
+print:
+    cover:
+        enabled: true
+    toc: true
+#    cover:
+#        title: "test"
+#        subtitle: "test2"
 ---
 
 # Willkommen beim dokus-theme

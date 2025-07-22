@@ -12,6 +12,13 @@
     text-align: left;
 }
 
+#cover {
+    .ci-page-content {
+        h1,h2 {
+            padding-left: 0;
+        }
+    }
+}
 .ci-page-content {
     font-size: 12pt;
 

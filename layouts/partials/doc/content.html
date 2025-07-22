@@ -60,7 +60,9 @@
     {{- end -}}
     {{ if isset .Params.print "cover" }}
     {{ else }}
-    <h1>{{ $page.Title }}</h1>
+        {{ if ne .Params.hide_title true}}
+            <h1>{{ $page.Title }}</h1>
+        {{ end }}
     {{ end }}
     {{- if ne $page ".Description" "" -}}
         {{ if ne .Params.hide_description true}}
