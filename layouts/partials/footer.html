@@ -1,37 +1,37 @@
 {{ if isset .Site.Params "footer" }}
-{{ if .Site.Params.footer.enable }}
-<footer id="footer">
+{{ if .Site.Params.footer.enabled }}
+
+
+
+<footer id="footer" class="border-top">
     <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+            <p class="col-md-4 mb-0 text-muted">{{ .Site.Params.footer.copyright }}</p>
+            <ul class="nav col-md-8 justify-content-end">
 
-        <div class="row">
 
-        {{ if isset .Site.Params.footer "about_us" }}
-        <div class="col col-12 col-sm-6 col-md-9">
-            <h4>Über uns</h4>
-
-            {{ .Site.Params.footer.about_us | safeHTML }}
-
-            <hr class="d-block d-sm-none">
-
+                {{ $p := . -}}
+                {{ range .Site.Menus.footer -}}
+                <li class="nav-item">
+                {{ $active := or ($p.IsMenuCurrent "footer" .) ($p.HasMenuCurrent "footer" .) -}}
+                {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
+                {{ $pre := .Pre -}}
+                {{ $post := .Post -}}
+                {{ $url := urls.Parse .URL -}}
+                {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}   
+                <a class="nav-link px-2 text-muted {{- if $active }} active {{- end }}" href="{{ .URL }}"
+                {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}>
+                    {{- with .Pre }}{{ $pre }}{{ end -}}
+                    <span {{- if $active }} class="active" {{- end }}>
+                    {{- .Name -}}
+                    </span>
+                    {{- with .Post }} {{ $post }}{{ end -}}
+                </a>
+                </li>
+                {{ end }}
+            </ul>
         </div>
-        <!-- /.col-md-4 -->
-        {{ end }}
 
-        <!-- /.col-md-4 -->
-
-        {{ if isset .Site.Params.footer "address" }}
-        <div class="col col-12 col-sm-6 col-md-3">
-
-          <h4>Kontakt</h4>
-
-            {{ .Site.Params.footer.address | safeHTML }}
-
-	    <a href="{{ default "/contact" .Site.Params.contact_url }}" class="btn btn-small btn-template-main">{{ i18n "contactGoTo" }}</a>
-
-        </div>
-        <!-- /.col-md-4 -->
-        {{ end }}
-    </div>
     </div>
 
     <!-- /.container -->

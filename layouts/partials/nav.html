@@ -1,7 +1,7 @@
 {{- if isset .Site.Params "nav" -}}
 {{- if .Site.Params.nav.enable }} 
     <header id="navbar" class="no-print" >
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
+    <nav class="navbar navbar-expand-md{{ if eq .Site.Params.style.navbar_dark true}} navbar-dark bg-dark{{ else }} navbar-light bg-light{{ end }}" >
         <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
             <a class="navbar-brand"  href="{{ .Site.BaseURL }}" >{{ .Site.Title | markdownify | plainify }}
             </a>

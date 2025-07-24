@@ -78,6 +78,8 @@ menu:
 
 params:
   #searchengine: fuse #fuse, pagefind
+  css: 
+    navbar_dark: true
   searchengine: pagefind
   doc:
     collapsible: true
