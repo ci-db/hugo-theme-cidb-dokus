@@ -7,7 +7,7 @@ outputFormats:
     baseName: index
     isHTML: true
     mediaType: text/html
-    path: _print    
+    path: print    
     permalinkable: false
   FUSE_SEARCH:
     baseName: _searchindex 

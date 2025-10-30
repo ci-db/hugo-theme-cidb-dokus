@@ -37,10 +37,10 @@
         <nav class="nav flex-column">    
             {{ if ne .File $root.File }}
             {{- /* }} <!-- <a class="nav-link" href="{{ if .IsSection }}{{ .Permalink }}{{ else }}{{ .Parent.Permalink }}{{ end }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a> -->
-             <a class="nav-link" href="{{ .Permalink }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a>
+             <a class="nav-link" href="{{ .Site.BaseURL }}print/{{ .RelPermalink }}" target="_blank"><i class="bi bi-printer"></i> Print Section</a>
              {{ */ -}}
             {{ end }}
-            <a class="nav-link" href="{{ $root.Permalink }}_print"  target="_blank"><i class="bi bi-printer"></i> {{ i18n "print_document" . }}</a>
+            <a class="nav-link" href="{{ .Site.BaseURL }}print/{{ $root.RelPermalink }}"  target="_blank"><i class="bi bi-printer"></i> {{ i18n "print_document" . }}</a>
 
         </nav>
         <hr>
