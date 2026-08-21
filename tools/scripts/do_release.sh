@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Check if the script is being run from the root of the project
 #if [ ! -f .version ] || [ ! -f frontend/package.json ] || [ ! -f CHANGELOG.md ]; then
@@ -9,9 +10,9 @@ fi
 
 part=patch
 
-if [ "$1" == "major" ]; then
+if [ "${1:-}" == "major" ]; then
 	part=$1
-elif [ "$1" == "minor" ]; then
+elif [ "${1:-}" == "minor" ]; then
 	part=$1
 fi
 
@@ -22,9 +23,10 @@ new_version=$(npm version $part)
 
 git add package.json
 
+# Commit the changes with the new version
+git commit -m "release: $new_version"
 
-
-echo $new_version
-
-
+# Push the commit and the tag to the repository
+git push
+git push --tags
 
