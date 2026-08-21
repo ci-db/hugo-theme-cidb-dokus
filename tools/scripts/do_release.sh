@@ -21,7 +21,7 @@ echo "do $part"
 
 new_version=$(npm version $part)
 
-git add package.json
+git add .
 
 # Commit the changes with the new version
 git commit -m "release: $new_version"
