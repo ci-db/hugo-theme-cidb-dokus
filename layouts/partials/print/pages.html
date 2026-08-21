@@ -32,7 +32,7 @@
     {{ end }}
 
 </div>
-{{ if .IsNode  }}      
+{{ if .IsBranch  }}      
 {{ partial "print/pages" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
 {{ end }}
 {{ end }}

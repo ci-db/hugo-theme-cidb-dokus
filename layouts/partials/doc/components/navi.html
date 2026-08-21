@@ -25,7 +25,7 @@
     <a class="nav-link ajax-call{{ if or (eq .File  $currentPage.File)  ($vorfahr) }} active{{ end }}" 
     data-bs-toggle="collapse" 
      role="button"  aria-expanded="false"   data-bs-target="#{{ $id }}"   aria-controls="{{ $id }}"    href="{{ .Permalink }}">{{  partial "helper/page-title" . }}</a>
-    {{- if .IsNode  }}  
+    {{- if .IsBranch  }}  
     <nav id="{{ $id }}" class="collapse{{ if  or (eq .File  $currentPage.File) (eq  $vorfahr  true) }} active show{{ end }}">
         {{ template "builder" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" ( add $stufe 1 ) "item" . )  }}
     </nav>    

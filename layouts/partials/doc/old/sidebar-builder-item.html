@@ -4,7 +4,7 @@
 {{ $site := .site }}
 
 {{ range  $index, $element := .item.Pages.ByWeight  }}    
-    {{ if .IsNode  }}    
+    {{ if .IsBranch  }}    
 
     {{ if eq $stufe 1}}
         {{ $collapsible := false }}
@@ -54,7 +54,7 @@
 
 
     <a class="nav-link ajax-call{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
-    {{ if .IsNode  }}  
+    {{ if .IsBranch  }}  
     <nav>
         {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
     </nav>    

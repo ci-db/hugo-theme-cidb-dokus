@@ -1,0 +1,4 @@
+{{ $path := .Get 0 }}
+{{ with site.GetPage $path }}
+ tes {{ .Content }}
+{{ end }}
