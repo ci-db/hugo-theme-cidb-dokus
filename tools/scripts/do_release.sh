@@ -19,14 +19,14 @@ fi
 echo "do $part"
 
 
-new_version=$(npm version $part)
+#new_version=$(npm version $part)
 
-git add .
+#git add .
 
 # Commit the changes with the new version
-git commit -m "release: $new_version"
+#git commit -m "release: $new_version"
 
 # Push the commit and the tag to the repository
-git push
+#git push
 git push --tags
 
