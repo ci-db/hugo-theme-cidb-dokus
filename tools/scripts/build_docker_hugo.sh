@@ -1,0 +1,1 @@
+docker buildx build --push --file tools/docker/hugo.dockerfile --tag ghcr.io/ci-db/hugo-theme-cidb-dokus/hugo:v0.165.0  --platform linux/amd64 .  #--progress=plain  > ./test.log
