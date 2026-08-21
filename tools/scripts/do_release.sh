@@ -27,6 +27,6 @@ echo "do $part"
 #git commit -m "release: $new_version"
 
 # Push the commit and the tag to the repository
-#git push
+git push
 git push --tags
 
