@@ -1,6 +1,6 @@
 {
   "name": "dokus",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "repository": "github:cidb/hugo-theme-cidb-dokus",
   "license": "Apache-2.0",
   "scripts": {
@@ -13,17 +13,13 @@
     "_cd:docs": "cd userguide_root &&",
     "_build:pagedfind": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir -d 'public_pagefind' && pagefind --site './userguide_root/public_pagefind' --output-path ./userguide_root/static/_pagefind",
     "_dev": "npm run _cd:docs -- hugo  --themesDir ../.. --bind  0.0.0.0 --baseURL \"${DEV_BASE_URL:-http://localhost}\" -p ${DEV_PORT:-9001} server  --disableFastRender",
-
-    "docs-install": "npm run _cd:docs -- npm install",    
+    "docs-install": "npm run _cd:docs -- npm install",
     "get:hugo-modules": "node tools/getHugoModules/index.mjs",
-    
     "test:all": "npm run ci:prepare &&  npm run _cd:docs test",
     "test": "npm run _cd:docs test",
-
     "dev:search": "dotenv -- npm run _build:pagedfind && npm run dev",
     "dev": "dotenv -- npm run _dev",
     "prepare": "npm run docs-install && npm run _prepare",
-
     "build": "npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir",
     "build:search": "dotenv -- npm run _build:pagedfind && npm run _cd:docs -- hugo --themesDir ../.. --cleanDestinationDir",
     "postinstall": "npm run _mkdir:hugo-mod"
