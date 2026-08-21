@@ -1,7 +1,8 @@
 baseURL: /
 title: cidb Dokus
 theme: [hugo-theme-cidb-dokus]
-
+#themesDir: ../..
+themesDir: "../.."
 
 outputFormats:
   print:

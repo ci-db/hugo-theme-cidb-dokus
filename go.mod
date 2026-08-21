@@ -1,6 +1,6 @@
 module github.com/ci-db/hugo-theme-cidb-dokus
 
-go 1.27.0
+go 1.26.4
 
 require (
 	github.com/krisk/Fuse v7.5.0+incompatible // indirect

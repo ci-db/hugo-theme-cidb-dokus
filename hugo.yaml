@@ -62,25 +62,26 @@ module:
     - source: assets/_vendor/bootstrap-icons/font/fonts
       target: static/fonts      
     - source: assets/_vendor/bootstrap/scss
-      target: assets/vendor/bootstrap/scss/vendor      
-  imports:
-    - path: github.com/twbs/bootstrap
-      disable: false
-      mounts:
-        - source: scss
-          target: assets/vendor/bootstrap/scss
-        - source: dist/js
-          target: assets/vendor/bootstrap/dist/js
-    - path: github.com/twbs/icons
-      disable: false
-      mounts:
-        - source: font/fonts
-          target: static/fonts   
-        - source: font
-          target: assets/vendor/bootstrap-icons/font  
+      target: assets/vendor/bootstrap/scss/vendor     
 
-    - path: github.com/krisk/Fuse
-      disable: false
-      mounts:
-        - source: dist
-          target: assets/vendor/fuse.js/dist 
+  #imports:
+  #  - path: github.com/twbs/bootstrap
+  #    disable: false
+  #    mounts:
+  #      - source: scss
+  #        target: assets/vendor/bootstrap/scss
+  #      - source: dist/js
+  #        target: assets/vendor/bootstrap/dist/js
+  #  - path: github.com/twbs/icons
+  #    disable: false
+  #    mounts:
+  #      - source: font/fonts
+  #        target: static/fonts   
+  #      - source: font
+  #        target: assets/vendor/bootstrap-icons/font 
+  #
+  #  - path: github.com/krisk/Fuse
+  #    disable: false
+  #    mounts:
+  #      - source: dist
+  #        target: assets/vendor/fuse.js/dist 
