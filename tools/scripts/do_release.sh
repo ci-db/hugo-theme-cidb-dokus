@@ -16,6 +16,7 @@ elif [ "${1:-}" == "minor" ]; then
 	part=$1
 fi
 
+
 echo "do $part"
 
 
